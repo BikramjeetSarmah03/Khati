@@ -35,13 +35,13 @@ export default function HeroCarousel() {
         </div>
       </button>
 
-      <SwiperSlide>
+      <SwiperSlide className="hero">
         <div className="w-full h-full bg-blue-500">hey</div>
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className="hero">
         <div className="w-full h-full bg-green-500">hey</div>
       </SwiperSlide>
-      <SwiperSlide>
+      <SwiperSlide className="hero">
         <div className="w-full h-full bg-yellow-500">hey</div>
       </SwiperSlide>
 

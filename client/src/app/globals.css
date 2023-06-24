@@ -68,7 +68,7 @@ h6 {
   display: none;
 }
 
-.swiper-slide {
+.swiper-slide.hero {
   width: 100% !important;
   height: 100% !important;
 }

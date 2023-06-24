@@ -1,4 +1,6 @@
-import HeroCarousel from "@/components/common/HeroCarousel";
+import Heading from "@/components/common/Heading";
+import FeaturedCarousel from "@/components/home/FeaturedCarousel";
+import HeroCarousel from "@/components/home/HeroCarousel";
 
 export default function Home() {
   return (
@@ -10,6 +12,14 @@ export default function Home() {
         </div>
         <div className="xl:col-span-8">
           <HeroCarousel />
+        </div>
+      </section>
+
+      <section className="mt-16 min-h-[20rem] container mx-auto px-4 sm:px-0">
+        <Heading title="Featured Products" center={true} />
+
+        <div className="relative mt-8 h-96">
+          <FeaturedCarousel />
         </div>
       </section>
     </>
