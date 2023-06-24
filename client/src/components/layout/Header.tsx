@@ -29,7 +29,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`flex items-center justify-between z-10 bg-white px-4 transition-all duration-500 ${
+        className={`flex items-center justify-between z-[999] bg-white px-4 transition-all duration-500 ${
           activeScrollar ? "py-4 sticky top-0 shadow-md" : "py-8"
         }`}
         id="#top">

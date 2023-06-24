@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper";
 
 import { useRef } from "react";
+import HeroCarouselProduct from "./HeroCarouselProduct";
 
 export default function HeroCarousel() {
   const swiperRef = useRef() as any;
@@ -35,15 +36,11 @@ export default function HeroCarousel() {
         </div>
       </button>
 
-      <SwiperSlide className="hero">
-        <div className="w-full h-full bg-blue-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="hero">
-        <div className="w-full h-full bg-green-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="hero">
-        <div className="w-full h-full bg-yellow-500">hey</div>
-      </SwiperSlide>
+      {[1, 2, 3].map((index) => (
+        <SwiperSlide className="relative hero" key={index}>
+          <HeroCarouselProduct />
+        </SwiperSlide>
+      ))}
 
       <button
         className="absolute right-0 z-10 cursor-pointer top-1/2"
