@@ -1,3 +1,5 @@
+import HeroCarousel from "@/components/common/HeroCarousel";
+
 export default function Home() {
   return (
     <>
@@ -6,7 +8,9 @@ export default function Home() {
           <div className="w-full h-full transition-all duration-500 bg-red-400 cursor-pointer hover:shadow-2xl"></div>
           <div className="w-full h-full transition-all duration-500 bg-red-400 cursor-pointer hover:shadow-2xl"></div>
         </div>
-        <div className="bg-red-400 xl:col-span-8"></div>
+        <div className="xl:col-span-8">
+          <HeroCarousel />
+        </div>
       </section>
     </>
   );

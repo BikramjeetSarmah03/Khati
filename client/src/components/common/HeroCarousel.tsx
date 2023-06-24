@@ -1,12 +1,14 @@
 "use client";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 
-// import required modules
-import { Navigation, Autoplay, A11y } from "swiper";
+import { Navigation, Autoplay } from "swiper";
+
 import { useRef } from "react";
 
 export default function HeroCarousel() {
@@ -15,34 +17,42 @@ export default function HeroCarousel() {
   return (
     <Swiper
       navigation={true}
-      modules={[Navigation, Autoplay, A11y]}
-      // autoplay={{
-      //   delay: 2500,
-      //   disableOnInteraction: false,
-      // }}
-      autoplay={false}
-      onSwiper={(swiper) => (swiperRef.current = swiper)}
-      className="mySwiper"
+      modules={[Navigation, Autoplay]}
       loop={true}
-      slidesPerView={1}>
-      <SwiperSlide>
-        <div className="h-40 bg-red-500">Slide 1</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-40 bg-green-500">Slide 2</div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="h-40 bg-yellow-500">Slide 3</div>
-      </SwiperSlide>
+      className="w-full h-full"
+      autoplay={{
+        delay: 2500,
+        disableOnInteraction: false,
+      }}
+      onSwiper={(swiper) => (swiperRef.current = swiper)}>
       <button
-        className="mx-4 cursor-pointer"
+        className="absolute left-0 z-10 cursor-pointer top-1/2"
         onClick={() => swiperRef.current.slidePrev()}>
-        Prev
+        <div className="triangle left">
+          <span>
+            <ChevronLeftIcon className="w-5 h-5" />
+          </span>
+        </div>
       </button>
+
+      <SwiperSlide>
+        <div className="w-full h-full bg-blue-500">hey</div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="w-full h-full bg-green-500">hey</div>
+      </SwiperSlide>
+      <SwiperSlide>
+        <div className="w-full h-full bg-yellow-500">hey</div>
+      </SwiperSlide>
+
       <button
-        className="mx-4 cursor-pointer"
+        className="absolute right-0 z-10 cursor-pointer top-1/2"
         onClick={() => swiperRef.current.slideNext()}>
-        Next
+        <div className="triangle right">
+          <span>
+            <ChevronRightIcon className="w-5 h-5" />
+          </span>
+        </div>
       </button>
     </Swiper>
   );
