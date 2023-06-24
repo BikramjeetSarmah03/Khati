@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper";
 
 import { useRef } from "react";
+import HomeProductCard from "./HomeProductCard";
 
 export default function FeaturedCarousel() {
   const swiperRef = useRef() as any;
@@ -32,27 +33,17 @@ export default function FeaturedCarousel() {
         990: {
           slidesPerView: 3,
         },
-        1200: {
+        1280: {
           slidesPerView: 4,
         },
       }}
       className="flex h-full"
       onSwiper={(swiper) => (swiperRef.current = swiper)}>
-      <SwiperSlide className="max-h-96 w-[400px]">
-        <div className="h-full bg-green-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="max-h-96 w-[400px]">
-        <div className="h-full bg-green-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="max-h-96 w-[400px]">
-        <div className="h-full bg-green-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="max-h-96 w-[400px]">
-        <div className="h-full bg-green-500">hey</div>
-      </SwiperSlide>
-      <SwiperSlide className="max-h-96 w-[400px]">
-        <div className="h-full bg-green-500">hey</div>
-      </SwiperSlide>
+      {[1, 2, 3, 4, 5].map((index) => (
+        <SwiperSlide className="max-h-96 w-[400px]" key={index}>
+          <HomeProductCard />
+        </SwiperSlide>
+      ))}
 
       <button
         className="absolute left-0 z-10 cursor-pointer top-[40%] bg-white border p-2 text-primary text-sm font-serif hover:bg-primary hover:text-white transition-all duration-500"
