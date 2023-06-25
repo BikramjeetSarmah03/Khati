@@ -17,26 +17,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mt-16 min-h-[20rem] container mx-auto px-4 sm:px-0">
+      <section className="mt-16 min-h-[20rem] container mx-auto">
         <Heading title="Featured Products" center />
 
-        <div className="relative mt-8 h-96">
+        <div className="relative mt-8 ml-2 h-96">
           <FeaturedCarousel />
         </div>
       </section>
 
-      <section className="mt-16 min-h-[20rem] container mx-auto px-4 sm:px-0">
+      <section className="mt-16 min-h-[20rem] container mx-auto">
         <Heading title={"Purchase Online on Khati"} center />
 
         <section className="mt-8">
-          <ul className="flex items-center justify-center gap-7">
+          <ul className="flex items-center justify-center px-4 text-xs gap-7 md:text-base">
             <li className="category-header active">New Arrivals</li>
             <li className="category-header">Best Seller</li>
             <li className="category-header">Most View</li>
             <li className="category-header">Discounts</li>
           </ul>
 
-          <div className="grid grid-cols-12 gap-4 mt-8">
+          <div className="grid grid-cols-12 gap-4 mt-8 ml-2">
             {[1, 2, 3, 4, 5].map((index) => (
               <HomeProductCard key={index} />
             ))}

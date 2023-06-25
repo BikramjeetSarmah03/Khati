@@ -12,7 +12,7 @@ export default function HomeProductCard({}: ProductProps) {
   const newProduct = false;
 
   return (
-    <div className="w-[426px] sm:w-[325px] md:w-[312px] xl:w-[297px] p-4 space-y-4 col-span-12 sm:col-span-6 xl:col-span-3 h-full pt-8 transition-all duration-500 lg:col-span-4 bg-white cursor-pointer hover:shadow-[0_5px_10px_5px_rgba(0,0,0,0.05)] group overflow-hidden">
+    <div className="w-[300px] sm:w-[325px] md:w-[312px] xl:w-[297px] p-4 space-y-4 col-span-12 sm:col-span-6 xl:col-span-3 h-full pt-8 transition-all duration-500 lg:col-span-4 bg-white cursor-pointer hover:shadow-[0_5px_10px_5px_rgba(0,0,0,0.05)] group overflow-hidden">
       <div className="relative overflow-hidden">
         {newProduct && (
           <div className="absolute px-2 py-1 text-white rounded-md top-5 left-5 bg-primary">
