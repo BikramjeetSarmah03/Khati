@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type HeroProduct = {};
 
@@ -25,14 +26,16 @@ export default function HeroProductCard({}: HeroProduct) {
         </h2>
       </div>
 
-      <div className="relative w-full h-full overflow-hidden">
+      <Link
+        href={"/product/123"}
+        className="relative w-full h-full overflow-hidden">
         <Image
           src="/assets/product.webp"
           alt="productImg"
           fill
           className="z-0 h-auto max-w-full bg-cover"
         />
-      </div>
+      </Link>
 
       <div className="absolute bottom-0 flex justify-between w-full p-4">
         <div>

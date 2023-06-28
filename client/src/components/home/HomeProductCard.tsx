@@ -4,6 +4,7 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProductProps = {};
 
@@ -25,7 +26,7 @@ export default function HomeProductCard({}: ProductProps) {
           </div>
         )}
 
-        <div className="w-full overflow-hidden">
+        <Link href={"/product/123"} className="w-full overflow-hidden">
           <Image
             width={100}
             height={100}
@@ -33,7 +34,7 @@ export default function HomeProductCard({}: ProductProps) {
             alt="productImg"
             className="w-full h-full bg-cover"
           />
-        </div>
+        </Link>
 
         <div className="absolute bottom-[-60px] invisible transition-all duration-500 bg-white group-hover:visible group-hover:bottom-0 w-[calc(100%-40px)] p-2 m-4 flex items-center justify-between px-4 text-sm xl:text-xl">
           <HeartIcon className="w-6 h-6 transition-all duration-300 cursor-pointer hover:text-primary" />
