@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  position: relative;
+  overflow-x: hidden;
+}
+
 body {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 section {
