@@ -64,7 +64,7 @@ a {
   box-shadow: none;
 }
 .header-bottom .dropdown-menu {
-  background-color: var(--color-131921);
+  background-color: var(--color-232f3e);
   width: 100%;
   transform: translate3d(0px, 50px, 0px) !important;
 }

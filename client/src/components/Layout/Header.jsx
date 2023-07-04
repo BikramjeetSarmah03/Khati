@@ -6,8 +6,8 @@ import { BiMenuAltLeft } from "react-icons/bi";
 
 export default function Header() {
   return (
-    <>
-      <header className="py-3 header-top-strip">
+    <header>
+      <section className="py-3 header-top-strip">
         <div className="container-xxl">
           <div className="row">
             <div className="col-6">
@@ -25,9 +25,9 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      <header className="py-3 header-upper">
+      <section className="py-3 header-upper">
         <div className="container-xxl">
           <div className="row align-items-center ">
             <div className="col-2">
@@ -82,16 +82,16 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      <header className="py-3 header-bottom ">
+      <section className="py-3 header-bottom ">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
               <div className="menu-bottom d-flex align-items-center gap-30">
                 <div className="dropdown">
                   <button
-                    className="bg-transparent border-0 btn btn-secondary dropdown-toggle "
+                    className="bg-transparent border-1 btn btn-secondary dropdown-toggle "
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -140,7 +140,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-      </header>
-    </>
+      </section>
+    </header>
   );
 }
