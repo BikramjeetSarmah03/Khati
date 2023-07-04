@@ -5,5 +5,5 @@ const connectDatabase = require("./config/db");
 const PORT = process.env.PORT;
 app.listen(PORT, async () => {
   await connectDatabase();
-  console.log(`Server started at PORT: ${PORT}`);
+  console.log(`Server started at http://localhost:${PORT}`);
 });
