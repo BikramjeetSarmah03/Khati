@@ -79,3 +79,26 @@ a {
 }
 
 /* -------------------Header End -------------------*/
+
+/* -------------------Footer Start -------------------*/
+
+footer {
+  background: var(--color-232f3e);
+  color: white;
+}
+footer section:not(:first-child) {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+footer .input-group-text {
+  background-color: var(--color-232f3e);
+  color: white;
+  padding: 8px 17px;
+}
+footer .footer-link a {
+  color: white;
+}
+footer .social_icons a {
+  color: white;
+}
+
+/* -------------------Footer End -------------------*/
