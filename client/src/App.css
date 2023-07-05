@@ -65,9 +65,9 @@ a {
 }
 
 .section-heading {
+  font-weight: bold;
   font-size: 20px;
   line-height: 32px;
-  font-weight: 500;
   margin-bottom: 30px;
 }
 

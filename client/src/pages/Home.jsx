@@ -247,6 +247,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="py-5 popular-wrapper home-wrapper-2">
+        <div className="container-xxl ">
+          <div className="row">
+            <div className="col-12">
+              <h3 className="section-heading">Our Popular Products</h3>
+            </div>
+          </div>
+          <div className="row">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </section>
+
       <section className="py-5 marquee-wrapper home-wrapper-2">
         <div className="conatiner-xxl">
           <div className="row">
