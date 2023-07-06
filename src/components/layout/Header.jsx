@@ -7,11 +7,11 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between p-4 space-x-4 shadow-xl md:px-32">
+      <nav className="flex items-center justify-between p-4 space-x-4 shadow-xl lg:px-32">
         <h1 className="text-2xl font-bold text-orange-400 md:text-3xl">
           Khati
         </h1>
-        <div className="flex items-center w-full max-w-[10rem] pl-4 overflow-hidden border md:max-w-lg lg:max-w-xl rounded-xl">
+        <div className="flex items-center w-full max-w-[20rem] pl-4 overflow-hidden border md:max-w-lg lg:max-w-xl rounded-xl">
           <input
             type="text"
             placeholder="Search..."
@@ -64,23 +64,23 @@ export default function Header() {
             )}
             <FiChevronDown size={20} className="hidden ml-2 md:block" />
 
-            <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-80 -right-0 top-12 max-h-[500px] bg-white">
+            <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-64 sm:group-hover:w-80 -right-2 top-8 sm:top-12 max-h-[500px] bg-white">
               <div className="border shadow">
-                <h1 className="p-4 text-xl text-center border-b-2 cursor-default">
+                <h1 className="p-4 text-center border-b-2 cursor-default sm:text-xl">
                   Welcome to
                   <span className="font-bold text-orange-400"> Khati </span>
                 </h1>
                 {user ? (
                   <div className="flex items-start p-4 border-b-2 cursor-default">
-                    <Image
-                      src={
-                        "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
-                      }
-                      alt="profileImg"
-                      height={50}
-                      width={50}
-                      className="mr-2 rounded-full"
-                    />
+                    <div className="h-10 w-10 sm:h-[50px] sm:w-[50px] relative mr-2 rounded-full overflow-hidden">
+                      <Image
+                        src={
+                          "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
+                        }
+                        alt="profileImg"
+                        fill
+                      />
+                    </div>
 
                     <div className="pl-4">
                       <h1 className="text-base">Welcome Back,</h1>
