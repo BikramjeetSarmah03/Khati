@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between p-4 space-x-4 shadow-xl">
+      <nav className="flex items-center justify-between p-4 space-x-4 shadow-xl md:px-32">
         <h1 className="text-2xl font-bold text-orange-400 md:text-3xl">
           Khati
         </h1>
@@ -26,7 +26,7 @@ export default function Header() {
         </div>
       </nav>
 
-      <nav className="p-2 overflow-y-auto text-[10px] bg-gray-50 md:text-base">
+      <nav className="p-2 text-[10px] bg-gray-50 md:text-base">
         <ul className="flex items-center justify-center">
           <li className="px-4 border-r border-gray-400">INR</li>
           <li className="hidden px-4 border-r border-gray-400 md:block">
@@ -42,7 +42,7 @@ export default function Header() {
             <BiHeart size={24} className="mr-2 text-gray-500" />{" "}
             <span>Wishlist</span>
           </li>
-          <li className="relative flex items-center px-4 cursor-pointer md:group">
+          <li className="relative flex items-center px-4 cursor-pointer group">
             {user ? (
               <>
                 <div className="relative h-[20px] md:h-[30px] w-[20px] md:w-[30px] mr-2 rounded-full overflow-hidden">
@@ -64,7 +64,7 @@ export default function Header() {
             )}
             <FiChevronDown size={20} className="hidden ml-2 md:block" />
 
-            <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-80 -right-0 top-12 max-h-[500px]">
+            <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-80 -right-0 top-12 max-h-[500px] bg-white">
               <div className="border shadow">
                 <h1 className="p-4 text-xl text-center border-b-2 cursor-default">
                   Welcome to
