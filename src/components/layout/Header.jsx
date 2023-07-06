@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { BiSearch, BiHeart, BiUser } from "react-icons/bi";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiShoppingCart } from "react-icons/fi";
 
 export default function Header() {
   const user = true;
 
   return (
     <header>
-      <nav className="flex items-center justify-between p-4 shadow-xl">
-        <h1 className="text-3xl font-bold text-orange-400">Khati</h1>
-        <div className="flex items-center w-full max-w-xl pl-4 overflow-hidden border rounded-xl">
+      <nav className="flex items-center justify-between p-4 space-x-4 shadow-xl">
+        <h1 className="text-2xl font-bold text-orange-400 md:text-3xl">
+          Khati
+        </h1>
+        <div className="flex items-center w-full max-w-[10rem] pl-4 overflow-hidden border md:max-w-lg lg:max-w-xl rounded-xl">
           <input
             type="text"
             placeholder="Search..."
@@ -19,31 +21,39 @@ export default function Header() {
             <BiSearch />
           </div>
         </div>
-        <div>Cart</div>
+        <div>
+          <FiShoppingCart size={24} />
+        </div>
       </nav>
 
-      <nav className="p-2 bg-gray-50">
+      <nav className="p-2 overflow-y-auto text-[10px] bg-gray-50 md:text-base">
         <ul className="flex items-center justify-center">
           <li className="px-4 border-r border-gray-400">INR</li>
-          <li className="px-4 border-r border-gray-400">Buyer Protection</li>
-          <li className="px-4 border-r border-gray-400">Customer Service</li>
-          <li className="px-4 border-r border-gray-400">Help</li>
+          <li className="hidden px-4 border-r border-gray-400 md:block">
+            Buyer Protection
+          </li>
+          <li className="hidden px-4 border-r border-gray-400 md:block">
+            Customer Service
+          </li>
+          <li className="hidden px-4 border-r border-gray-400 md:block">
+            Help
+          </li>
           <li className="flex items-center px-4 border-r border-gray-400 ">
             <BiHeart size={24} className="mr-2 text-gray-500" />{" "}
             <span>Wishlist</span>
           </li>
-          <li className="relative flex items-center px-4 cursor-pointer group">
+          <li className="relative flex items-center px-4 cursor-pointer md:group">
             {user ? (
               <>
-                <Image
-                  src={
-                    "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
-                  }
-                  alt="profileImg"
-                  height={30}
-                  width={30}
-                  className="mr-2 rounded-full "
-                />
+                <div className="relative h-[20px] md:h-[30px] w-[20px] md:w-[30px] mr-2 rounded-full overflow-hidden">
+                  <Image
+                    src={
+                      "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
+                    }
+                    alt="profileImg"
+                    fill
+                  />
+                </div>
                 <span>Bikram</span>
               </>
             ) : (
@@ -52,7 +62,7 @@ export default function Header() {
                 <span>Account</span>
               </>
             )}
-            <FiChevronDown size={20} className="ml-2" />
+            <FiChevronDown size={20} className="hidden ml-2 md:block" />
 
             <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-80 -right-0 top-12 max-h-[500px]">
               <div className="border shadow">
