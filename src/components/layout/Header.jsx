@@ -1,9 +1,15 @@
+"use client";
+
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { BiSearch, BiHeart, BiUser } from "react-icons/bi";
 import { FiChevronDown, FiShoppingCart } from "react-icons/fi";
 
 export default function Header() {
-  const user = true;
+  const { data: session } = useSession();
+
+  console.log(session);
 
   return (
     <header>
@@ -43,18 +49,12 @@ export default function Header() {
             <span>Wishlist</span>
           </li>
           <li className="relative flex items-center px-4 cursor-pointer group">
-            {user ? (
+            {session ? (
               <>
                 <div className="relative h-[20px] md:h-[30px] w-[20px] md:w-[30px] mr-2 rounded-full overflow-hidden">
-                  <Image
-                    src={
-                      "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
-                    }
-                    alt="profileImg"
-                    fill
-                  />
+                  <Image src={session.user.image} alt="profileImg" fill />
                 </div>
-                <span>Bikram</span>
+                <span>{session.user.name}</span>
               </>
             ) : (
               <>
@@ -70,31 +70,29 @@ export default function Header() {
                   Welcome to
                   <span className="font-bold text-orange-400"> Khati </span>
                 </h1>
-                {user ? (
+                {session ? (
                   <div className="flex items-start p-4 border-b-2 cursor-default">
                     <div className="h-10 w-10 sm:h-[50px] sm:w-[50px] relative mr-2 rounded-full overflow-hidden">
-                      <Image
-                        src={
-                          "https://res.cloudinary.com/bikramjeet/image/upload/v1687036602/Khati/avatars/rr1t2y18xwihj97k408s.png"
-                        }
-                        alt="profileImg"
-                        fill
-                      />
+                      <Image src={session.user.image} alt="profileImg" fill />
                     </div>
 
                     <div className="pl-4">
                       <h1 className="text-base">Welcome Back,</h1>
-                      <h2 className="text-xl font-bold">{"Bikram"}</h2>
+                      <h2 className="text-xl font-bold">{session.user.name}</h2>
                     </div>
                   </div>
                 ) : (
                   <div className="flex items-center justify-between p-4 border-b-2">
-                    <button className="w-full px-4 py-2 mx-2 font-bold text-white bg-blue-500">
+                    <Link
+                      href={"/register"}
+                      className="w-full px-4 py-2 mx-2 font-bold text-center text-white bg-blue-500">
                       Register
-                    </button>
-                    <button className="w-full px-4 py-2 mx-2 font-bold text-blue-500 bg-gray-200 border-2 border-blue-500">
+                    </Link>
+                    <Link
+                      href={"/login"}
+                      className="w-full px-4 py-2 mx-2 font-bold text-center text-blue-500 bg-gray-200 border-2 border-blue-500">
                       Login
-                    </button>
+                    </Link>
                   </div>
                 )}
 
@@ -115,11 +113,15 @@ export default function Header() {
                     Wishlist
                   </li>
 
-                  <li className="p-4 bg-red-500 hover:bg-red-600 hover:shadow-inner">
-                    <button className="w-full h-full text-white ">
-                      LogOut
-                    </button>
-                  </li>
+                  {session && (
+                    <li className="p-4 bg-red-500 hover:bg-red-600 hover:shadow-inner">
+                      <button
+                        className="w-full h-full text-white "
+                        onClick={() => signOut()}>
+                        LogOut
+                      </button>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
