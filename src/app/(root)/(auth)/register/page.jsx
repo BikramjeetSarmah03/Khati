@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
 export default function Register() {
   const router = useRouter();
@@ -18,22 +19,40 @@ export default function Register() {
     password: "",
   });
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // const { data } = await axios.post("/api/auth/signup", {
-    //   ...registerData,
-    // });
+    setLoading(true);
+    try {
+      const { data } = await axios.post("/api/auth/signup", {
+        ...registerData,
+      });
 
-    // alert("data sent");
+      toast.success(data.message);
 
-    // router.push("/");
+      router.push("/");
+    } catch (error) {
+      if (error.name === "AxiosError") {
+        toast.error(error.response.data.message);
+        // toast.error(error)
+      }
+    } finally {
+      setLoading(false);
+      setRegisterData({
+        name: "",
+        email: "",
+        password: "",
+      });
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-[80vh] py-8 lg:min-h-screen">
       <div className="p-8 space-y-4 rounded-md shadow-md bg-gray-50">
-        <h1 className="text-xl font-bold text-center">Welcome Back</h1>
+        <h1 className="text-xl font-bold text-center">
+          Welcome to <span className="text-orange-400 underline">Khati</span>
+        </h1>
         <div className="flex items-center">
           <button
             className="flex items-center px-4 py-2 mx-2 transition-all duration-300 bg-white border rounded-md hover:bg-gray-200"
@@ -70,15 +89,15 @@ export default function Register() {
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label
-              for="name"
-              class="block mb-2 text-lg font-medium text-gray-900">
+              htmlFor="name"
+              className="block mb-2 text-lg font-medium text-gray-900">
               Full Name
             </label>
             <input
               type="text"
               name="name"
               id="name"
-              class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="John Doe"
               required
               onChange={(e) =>
@@ -89,15 +108,15 @@ export default function Register() {
           </div>
           <div>
             <label
-              for="email"
-              class="block mb-2 text-lg font-medium text-gray-900">
+              htmlFor="email"
+              className="block mb-2 text-lg font-medium text-gray-900">
               Email
             </label>
             <input
               type="email"
               name="email"
               id="email"
-              class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="name@company.com"
               required
               onChange={(e) =>
@@ -109,8 +128,8 @@ export default function Register() {
 
           <div>
             <label
-              for="password"
-              class="block mb-2 text-lg font-medium text-gray-900">
+              htmlFor="password"
+              className="block mb-2 text-lg font-medium text-gray-900">
               Password
             </label>
             <div className="relative">
@@ -118,7 +137,7 @@ export default function Register() {
                 type={showPass ? "text" : "password"}
                 name="password"
                 id="password"
-                class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="password"
                 required
                 onChange={(e) =>
@@ -138,27 +157,20 @@ export default function Register() {
             </div>
           </div>
 
-          <div className="w-full text-sm text-right">
-            <Link
-              href={"/password/forgot"}
-              className="text-blue-500 hover:underline">
-              Forgot Password ?
-            </Link>
-          </div>
-
           <button
-            className="w-full px-4 py-2 text-center text-white transition-all duration-300 bg-blue-500 rounded-md hover:bg-blue-600"
-            type="submit">
-            Sign in to your account
+            className={`w-full px-4 py-2 text-center text-white transition-all duration-300 bg-blue-500 rounded-md hover:bg-blue-600 ${
+              loading ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
+            type="submit"
+            disabled={loading}>
+            {loading ? "Registering..." : "Register your account"}
           </button>
 
           <div className="text-sm">
             <span>
-              {`Don't`} have a account yet ?{" "}
-              <Link
-                href={"/register"}
-                className="text-blue-500 hover:underline">
-                Sign up here
+              Already have a account yet ?{" "}
+              <Link href={"/login"} className="text-blue-500 hover:underline">
+                Login Here
               </Link>
             </span>
           </div>
