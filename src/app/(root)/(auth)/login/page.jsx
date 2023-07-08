@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { toast } from "react-hot-toast";
@@ -24,16 +23,26 @@ export default function Login() {
     e.preventDefault();
     setLoading(false);
     try {
-      const { data } = await axios.post("/api/auth/signin", {
-        ...loginData,
-      });
+      let options = {
+        redirect: false,
+        email: loginData.email,
+        password: loginData.password,
+      };
 
-      toast.success(data.message);
-      // router.push("/");
-    } catch (error) {
-      if (error.name === "AxiosError") {
-        toast.error(error.response.data.message);
+      const res = await signIn("credentials", options);
+
+      if (res.error) {
+        return toast.error(res.error);
       }
+
+      toast.success("Login Successfull");
+      router.back();
+    } finally {
+      setLoading(false);
+      setLoginData({
+        email: "",
+        password: "",
+      });
     }
   };
 
@@ -77,15 +86,15 @@ export default function Login() {
         <form className="space-y-4" onSubmit={handleFormSubmit}>
           <div>
             <label
-              for="email"
-              class="block mb-2 text-lg font-medium text-gray-900">
+              htmlFor="email"
+              className="block mb-2 text-lg font-medium text-gray-900">
               Email
             </label>
             <input
               type="email"
               name="email"
               id="email"
-              class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="name@company.com"
               required
               onChange={(e) =>
@@ -97,8 +106,8 @@ export default function Login() {
 
           <div>
             <label
-              for="password"
-              class="block mb-2 text-lg font-medium text-gray-900">
+              htmlFor="password"
+              className="block mb-2 text-lg font-medium text-gray-900">
               Password
             </label>
             <div className="relative">
@@ -106,7 +115,7 @@ export default function Login() {
                 type={showPass ? "text" : "password"}
                 name="password"
                 id="password"
-                class="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="password"
                 required
                 onChange={(e) =>
