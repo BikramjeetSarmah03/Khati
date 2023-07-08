@@ -1,5 +1,4 @@
-import NextAuth from "next-auth";
-import clientPromise from "@/utils/next-auth/mongodb";
+import clientPromise from "./mongodb";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 
 // providers
@@ -33,5 +32,3 @@ export const authOptions = {
   },
   secret: process.env.JWT_SECRET,
 };
-
-export default NextAuth(authOptions);
