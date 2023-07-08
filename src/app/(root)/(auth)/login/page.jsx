@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const router = useRouter();
@@ -17,16 +18,23 @@ export default function Login() {
     password: "",
   });
   const [showPass, setShowPass] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // const { data } = await axios.post("/api/auth/signup", {
-    //   ...loginData,
-    // });
+    setLoading(false);
+    try {
+      const { data } = await axios.post("/api/auth/signin", {
+        ...loginData,
+      });
 
-    // alert("data sent");
-
-    // router.push("/");
+      toast.success(data.message);
+      // router.push("/");
+    } catch (error) {
+      if (error.name === "AxiosError") {
+        toast.error(error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -127,9 +135,12 @@ export default function Login() {
           </div>
 
           <button
-            className="w-full px-4 py-2 text-center text-white transition-all duration-300 bg-blue-500 rounded-md hover:bg-blue-600"
-            type="submit">
-            Sign in to your account
+            className={`w-full px-4 py-2 text-center text-white transition-all duration-300 bg-blue-500 rounded-md hover:bg-blue-600 ${
+              loading ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
+            type="submit"
+            disabled={loading}>
+            {loading ? "Signing..." : "Sign in to your account"}
           </button>
 
           <div className="text-sm">
