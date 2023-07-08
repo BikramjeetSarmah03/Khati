@@ -36,7 +36,7 @@ export default function Login() {
       }
 
       toast.success("Login Successfull");
-      router.back();
+      router.push("/");
     } finally {
       setLoading(false);
       setLoginData({

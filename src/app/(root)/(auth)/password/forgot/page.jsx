@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { BiArrowBack } from "react-icons/bi";
@@ -12,7 +13,7 @@ export default function ForgotPassword() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setLoading(false);
+    setLoading(true);
 
     try {
       const { data } = await axios.post("/api/auth/password/forgot", { email });
