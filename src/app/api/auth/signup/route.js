@@ -5,6 +5,7 @@ import { validateEmail } from "@/utils/validateEmail";
 import { createActivationToken } from "@/utils/tokens";
 import db from "@/utils/db";
 import { sendEmail } from "@/utils/sendMails";
+import { activateEmailTemplate } from "@/utils/emails/activateEmailTemplate";
 
 export async function POST(request, response) {
   await db.connectDb();
@@ -44,7 +45,13 @@ export async function POST(request, response) {
   const activationToken = createActivationToken({ id: newUser._id.toString() });
 
   const url = `${process.env.BASE_URL}/activate/${activationToken}`;
-  await sendEmail(email, url, "", "Activate Your Account");
+  await sendEmail(
+    email,
+    url,
+    "",
+    "Activate Your Account",
+    activateEmailTemplate(email, url)
+  );
 
   await db.disconnectDb();
   return NextResponse.json({

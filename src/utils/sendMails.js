@@ -1,6 +1,5 @@
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
-import { activateEmailTemplate } from "./emails/activateEmailTemplate";
 
 const { OAuth2 } = google.auth;
 
@@ -20,7 +19,7 @@ const oauth2Client = new OAuth2(
 );
 
 // send email
-export const sendEmail = async (to, url, text, subject) => {
+export const sendEmail = async (to, url, text, subject, template) => {
   oauth2Client.setCredentials({
     refresh_token: MAILING_SERVICE_REFRESH_TOKEN,
   });
@@ -43,7 +42,7 @@ export const sendEmail = async (to, url, text, subject) => {
     from: SENDER_EMAIL,
     to: to,
     subject: subject,
-    html: activateEmailTemplate(to, url),
+    html: template,
   };
 
   smtpTransport.sendMail(mailOptions, (err, infos) => {
