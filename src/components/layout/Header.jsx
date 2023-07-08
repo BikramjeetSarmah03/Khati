@@ -43,8 +43,14 @@ export default function Header() {
             Help
           </li>
           <li className="flex items-center px-4 border-r border-gray-400 ">
-            <BiHeart size={24} className="mr-2 text-gray-500" />{" "}
-            <span>Wishlist</span>
+            <Link
+              href={"/wishlist"}
+              className="flex items-center w-full h-full">
+              <>
+                <BiHeart size={24} className="mr-2 text-gray-500" />{" "}
+                <span>Wishlist</span>
+              </>
+            </Link>
           </li>
           <li className="relative flex items-center px-4 cursor-pointer group">
             {session ? (
@@ -112,10 +118,10 @@ export default function Header() {
                   </li>
 
                   {session && (
-                    <li className="p-4 bg-red-500 hover:bg-red-600 hover:shadow-inner">
-                      <button
-                        className="w-full h-full text-white "
-                        onClick={() => signOut()}>
+                    <li
+                      className="p-4 bg-red-500 hover:bg-red-600 hover:shadow-inner"
+                      onClick={() => signOut()}>
+                      <button className="w-full h-full text-white ">
                         LogOut
                       </button>
                     </li>
