@@ -15,13 +15,21 @@ export default function OfferSwiper() {
   return (
     <div className="flex w-full h-full">
       <Swiper
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={10}
         pagination={{
           clickable: true,
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
+        breakpoints={{
+          760: {
+            slidesPerView: 2,
+          },
+          900: {
+            slidesPerView: 3,
+          },
+        }}
         className="offerSwiper">
         {offersAarray.map((offer, index) => (
           <SwiperSlide className="relative" key={index}>

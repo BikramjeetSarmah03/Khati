@@ -1,15 +1,17 @@
 import Link from "next/link";
 
 // Components Import
-import CategoryMenu from "@/components/home/CategoryMenu";
-import HeroSwiper from "@/components/home/HeroSwiper";
-import OfferSwiper from "@/components/home/OfferSwiper";
-import UserSide from "@/components/home/UserSide";
+import CategoryMenu from "@/components/home/hero/CategoryMenu";
+import HeroSwiper from "@/components/home/hero/HeroSwiper";
+import OfferSwiper from "@/components/home/hero/OfferSwiper";
+import UserSide from "@/components/home/hero/UserSide";
+import FlashHeading from "@/components/home/flashdeals/FlashHeading";
+import FlashDealsSwiper from "@/components/home/flashdeals/FlashDealsSwiper";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <div className="flex flex-col gap-4 p-4 max-w-[1700px] mx-auto min-h-[80vh] space-y-2 md:space-y-0 md:grid md:grid-cols-5 md:grid-rows-6">
+      <section className="flex flex-col gap-4 p-4 max-w-[1700px] mx-auto min-h-[80vh] space-y-2 md:space-y-0 md:grid md:grid-cols-5 md:grid-rows-6">
         <div className="h-20 md:h-[89vh] md:row-span-7 overflow-y-auto border shadow rounded ">
           <CategoryMenu />
         </div>
@@ -30,16 +32,22 @@ export default function Home() {
             Watches
           </Link>
         </div>
-        <div className="h-[400px] md:h-full overflow-hidden border rounded shadow md:col-span-4 md:row-span-3 md:col-start-2 lg:row-start-2 xl:col-span-3 xl:row-span-3">
+        <div className="h-[400px] md:h-full overflow-hidden border rounded shadow md:col-span-4 md:row-span-4 md:col-start-2 lg:row-start-2 xl:col-span-3 xl:row-span-3">
           <HeroSwiper />
         </div>
-        <div className="h-[300px] md:h-full overflow-hidden border rounded shadow md:block md:col-span-4 md:row-span-3 md:col-start-2 md:row-start-4 lg:row-start-5 xl:col-span-3 xl:row-span-2 ">
+        <div className="h-[300px] md:h-full overflow-hidden border rounded shadow md:block md:col-span-4 md:row-span-2 md:col-start-2 md:row-start-5  lg:row-start-5 xl:col-span-3 xl:row-span-2 ">
           <OfferSwiper />
         </div>
         <div className="hidden border rounded shadow xl:block xl:row-span-5 xl:col-start-5 xl:row-start-2">
           <UserSide />
         </div>
-      </div>
+      </section>
+
+      <section className="max-w-[1700px] mx-auto min-h-[50vh] p-4">
+        <FlashHeading />
+
+        <FlashDealsSwiper />
+      </section>
     </main>
   );
 }
