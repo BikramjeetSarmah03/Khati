@@ -142,7 +142,7 @@ export const menuArray = [
   },
 
   {
-    name: "Shoes,Sneakers,Heels",
+    name: "Shoes, Sneakers, Heels",
     link: "",
     subMenu: [
       {

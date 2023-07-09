@@ -5,23 +5,28 @@ import { BiCategory } from "react-icons/bi";
 export default function CategoryMenu() {
   return (
     <div>
-      <ul>
-        <li className="sticky top-0 flex items-center p-4 space-x-4 border-b bg-gray-50 z-10s">
-          <BiCategory size={24} />
-          <b>Categories</b>
-        </li>
+      <h1 className="sticky top-0 z-10 flex items-center p-2 space-x-4 text-sm border-b md:p-4 bg-gray-50 md:text-base">
+        <BiCategory className="text-xl md:text-2xl" />
+        <b className="text-sm lg:text-base">Categories</b>
+      </h1>
 
-        <div>
-          {menuArray.map((item, index) => (
+      <ul className="flex flex-row overflow-x-auto overflow-y-hidden md:flex-col marker:overflow-x-hidden md:overflow-y-auto ">
+        {menuArray.map((item, index) => (
+          <li
+            className="text-xs md:text-base hover:bg-gray-50 hover:shadow-inner"
+            key={index}>
             <Link
               href={item.link}
-              key={index}
-              className="flex items-center p-4 space-x-2 hover:bg-gray-50 hover:shadow-inner">
-              <span className="text-2xl">{item.icon}</span>
-              <span>{item.name}</span>
+              className="flex items-center p-4 space-x-2 md:pl-2 lg:pl-4">
+              <span className="text-lg md:text-2xl" title={item.name}>
+                {item.icon}
+              </span>
+              <span className="hidden text-[10px] md:inline-block">
+                {item.name}
+              </span>
             </Link>
-          ))}
-        </div>
+          </li>
+        ))}
       </ul>
     </div>
   );
