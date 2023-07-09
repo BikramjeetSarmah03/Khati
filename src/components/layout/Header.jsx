@@ -68,7 +68,7 @@ export default function Header() {
             )}
             <FiChevronDown size={20} className="hidden ml-2 md:block" />
 
-            <div className="absolute z-0 overflow-hidden transition-all duration-500 w-0 group-hover:w-64 sm:group-hover:w-80 -right-2 top-8 sm:top-12 max-h-[500px] bg-white">
+            <div className="absolute z-[999] overflow-hidden transition-all duration-500 w-0 group-hover:w-64 sm:group-hover:w-80 -right-2 top-8 sm:top-12 max-h-[500px] bg-white">
               <div className="border shadow">
                 <h1 className="p-4 text-center border-b-2 cursor-default sm:text-xl">
                   Welcome to

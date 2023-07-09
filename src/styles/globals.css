@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .row-span-7 {
+    grid-row: span 7 / span 7;
+  }
+}
+
+@import url(./heroSwiper.css);
+@import url(./offerSwiper.css);
+@import url(./effectSwiper.css);
