@@ -1,0 +1,8 @@
+.flashDealsSwiper > .swiper-button-prev,
+.flashDealsSwiper > .swiper-button-next {
+  @apply hidden sm:block;
+}
+
+.flashDealsSwiper {
+  @apply flex items-center justify-center;
+}
