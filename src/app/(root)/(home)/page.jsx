@@ -9,11 +9,14 @@ import FlashHeading from "@/components/home/flashdeals/FlashHeading";
 import FlashDealsSwiper from "@/components/home/flashdeals/FlashDealsSwiper";
 import CategoryCard from "@/components/home/categories/CategoryCard";
 import {
+  gamingSwiper,
   women_accessories,
   women_dresses,
   women_shoes,
+  women_swiper,
+  homeImprovSwiper,
 } from "@/utils/demoData/home";
-import ProductSwiper from "@/components/home/ProductSwiper";
+import ProductSwiper from "@/components/home/product/ProductSwiper";
 
 export default function Home() {
   return (
@@ -64,7 +67,9 @@ export default function Home() {
       </section>
 
       <section className="max-w-[1700px] mx-auto min-h-[50vh] p-4">
-        <ProductSwiper />
+        <ProductSwiper products={women_swiper} />
+        <ProductSwiper header={"For Gamers"} products={gamingSwiper} />
+        <ProductSwiper products={homeImprovSwiper} />
       </section>
     </main>
   );

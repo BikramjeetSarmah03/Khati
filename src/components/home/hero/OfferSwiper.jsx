@@ -1,15 +1,11 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Pagination, Navigation } from "swiper/modules";
-import Image from "next/image";
 import { offersAarray } from "@/utils/demoData/home";
-import Link from "next/link";
 
 export default function OfferSwiper() {
   return (
