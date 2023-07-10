@@ -10,6 +10,11 @@
   .row-span-7 {
     grid-row: span 7 / span 7;
   }
+
+  .flashDealsSwiper > .swiper-button-prev,
+  .flashDealsSwiper > .swiper-button-next {
+    @apply hidden sm:block;
+  }
 }
 
 @import url(./heroSwiper.css);

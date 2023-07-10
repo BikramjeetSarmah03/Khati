@@ -20,3 +20,8 @@
   height: 100%;
   object-fit: cover;
 }
+
+.offerSwiper > .swiper-button-prev,
+.offerSwiper > .swiper-button-next {
+  @apply hidden sm:block;
+}
