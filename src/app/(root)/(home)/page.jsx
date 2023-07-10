@@ -7,6 +7,13 @@ import OfferSwiper from "@/components/home/hero/OfferSwiper";
 import UserSide from "@/components/home/hero/UserSide";
 import FlashHeading from "@/components/home/flashdeals/FlashHeading";
 import FlashDealsSwiper from "@/components/home/flashdeals/FlashDealsSwiper";
+import CategoryCard from "@/components/home/categories/CategoryCard";
+import {
+  women_accessories,
+  women_dresses,
+  women_shoes,
+} from "@/utils/demoData/home";
+import ProductSwiper from "@/components/home/ProductSwiper";
 
 export default function Home() {
   return (
@@ -47,6 +54,17 @@ export default function Home() {
         <FlashHeading />
 
         <FlashDealsSwiper />
+      </section>
+
+      <section className="max-w-[1700px] mx-auto min-h-[1300px] lg:min-h-[60vh] p-4  gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-4">
+        <CategoryCard header="Dresses" products={women_dresses} />
+        <CategoryCard header="Shoes / High Heels" products={women_shoes} />
+        <CategoryCard header="Accessories" products={women_accessories} />
+        <CategoryCard header="Shoes" products={women_shoes} />
+      </section>
+
+      <section className="max-w-[1700px] mx-auto min-h-[50vh] p-4">
+        <ProductSwiper />
       </section>
     </main>
   );

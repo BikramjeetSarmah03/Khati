@@ -1,3 +1,9 @@
+.flashDealsSwiper > .swiper-wrapper > .swiper-slide {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .flashDealsSwiper > .swiper-button-prev,
 .flashDealsSwiper > .swiper-button-next {
   @apply hidden sm:block;

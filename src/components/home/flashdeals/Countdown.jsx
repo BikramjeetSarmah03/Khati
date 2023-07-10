@@ -20,7 +20,7 @@ export default function Countdown({ date }) {
   };
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-1 text-xs sm:space-x-2">
       <div className="flex items-center space-x-1">
         <span className="p-2 bg-black rounded-md">
           {remainingTime?.hours.slice(0, 1)}

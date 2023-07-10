@@ -11,13 +11,13 @@ import FlashProductCard from "./FlashProductCard";
 export default function FlashDealsSwiper() {
   return (
     <Swiper
-      slidesPerView={2}
+      slidesPerView={1}
       spaceBetween={30}
       loop={true}
       navigation={true}
       modules={[Navigation]}
       breakpoints={{
-        768: {
+        400: {
           slidesPerView: 2,
         },
         900: {
@@ -27,7 +27,7 @@ export default function FlashDealsSwiper() {
           slidesPerView: 5,
         },
       }}
-      className="flex items-center justify-center mt-4 flashDealsSwiper">
+      className="mt-4  flashDealsSwiper">
       {flashDealsArray.map((product, index) => (
         <SwiperSlide key={index}>
           <FlashProductCard product={product} />

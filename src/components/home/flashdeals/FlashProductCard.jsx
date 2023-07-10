@@ -3,8 +3,8 @@ import { BsLightningFill } from "react-icons/bs";
 
 export default function FlashProductCard({ product }) {
   return (
-    <div className="min-h-[350px] sm:min-h-[450px] w-[250px] sm:w-[300px] shadow my-4">
-      <div className="relative w-full h-[250px] sm:h-[350px] cursor-pointer overflow-hidden">
+    <div className="min-h-[400px] sm:min-h-[450px] w-[300px] shadow my-4">
+      <div className="relative w-full h-[300px] sm:h-[350px] cursor-pointer overflow-hidden">
         <Image
           src={product.image}
           alt="productImg"

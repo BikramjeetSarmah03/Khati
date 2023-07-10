@@ -15,7 +15,7 @@ export default function OfferSwiper() {
   return (
     <div className="flex w-full h-full">
       <Swiper
-        slidesPerView={2}
+        slidesPerView={1}
         spaceBetween={10}
         pagination={{
           clickable: true,
@@ -23,7 +23,7 @@ export default function OfferSwiper() {
         navigation={true}
         modules={[Pagination, Navigation]}
         breakpoints={{
-          760: {
+          400: {
             slidesPerView: 2,
           },
           900: {
