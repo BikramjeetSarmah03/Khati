@@ -3,7 +3,8 @@ import { BsArrowRightCircle } from "react-icons/bs";
 
 export default function CategoryCard({ header, products }) {
   return (
-    <div className={`shadow border  h-full w-full overflow-hidden bg-pink-500`}>
+    <div
+      className={`shadow border lg:h-[500px] w-full overflow-hidden bg-pink-500`}>
       <div
         className={`flex items-center justify-between text-xl text-white bg-pink-700 p-4`}>
         <h1>{header}</h1>
