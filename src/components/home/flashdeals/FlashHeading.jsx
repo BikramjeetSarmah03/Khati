@@ -9,7 +9,7 @@ export default function FlashHeading() {
         <BsLightningFill size={24} />
       </h1>
 
-      <Countdown />
+      <Countdown date={new Date("08/03/2023 00:00:00")} />
     </div>
   );
 }
