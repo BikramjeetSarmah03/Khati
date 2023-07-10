@@ -10,7 +10,7 @@ export default function CategoryMenu() {
         <b className="text-sm lg:text-base">Categories</b>
       </h1>
 
-      <ul className="flex flex-row overflow-x-auto overflow-y-hidden md:flex-col marker:overflow-x-hidden md:overflow-y-auto ">
+      <ul className="flex flex-row pt-2 overflow-x-auto overflow-y-hidden md:flex-col marker:overflow-x-hidden md:overflow-y-auto">
         {menuArray.map((item, index) => (
           <li
             className="text-xs md:text-base hover:bg-gray-50 hover:shadow-inner"
@@ -21,7 +21,7 @@ export default function CategoryMenu() {
               <span className="text-lg md:text-2xl" title={item.name}>
                 {item.icon}
               </span>
-              <span className="hidden text-[10px] md:inline-block">
+              <span className="hidden text-[10px] md:text-base md:inline-block">
                 {item.name}
               </span>
             </Link>
