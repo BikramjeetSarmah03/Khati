@@ -2,11 +2,25 @@ import Image from "next/image";
 import { BsArrowRightCircle } from "react-icons/bs";
 
 export default function CategoryCard({ header, products }) {
+  const colors = [
+    "#ef4444",
+    "#f97316",
+    "#d97706",
+    "#f59e0b",
+    "#3b82f6",
+    "#6366f1",
+    "#8b5cf6",
+    "#d946ef",
+    "#f43f5e",
+  ];
+  const background = colors[Math.floor(Math.random() * colors.length)];
+
   return (
     <div
-      className={`shadow border lg:h-[500px] w-full overflow-hidden bg-pink-500`}>
+      className={`shadow border lg:h-[500px] w-full overflow-hidden`}
+      style={{ backgroundColor: background }}>
       <div
-        className={`flex items-center justify-between text-xl text-white bg-pink-700 p-4`}>
+        className={`flex items-center justify-between text-xl text-white p-4`}>
         <h1>{header}</h1>
         <BsArrowRightCircle size={24} />
       </div>
