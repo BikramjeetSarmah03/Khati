@@ -16,9 +16,19 @@ import {
   women_swiper,
   homeImprovSwiper,
 } from "@/utils/demoData/home";
-import ProductSwiper from "@/components/home/product/ProductSwiper";
+import ProductSwiper from "@/components/home/product/ProductsSwiper";
+import Product from "@/models/ProductModel";
+import ProductCard from "@/components/home/product/ProductCard";
 
-export default function Home() {
+async function getProducts() {
+  const products = Product.find().sort({ createdAt: -1 }).lean();
+
+  return products;
+}
+
+export default async function Home() {
+  const products = await getProducts();
+
   return (
     <main className="min-h-screen">
       <section className="flex flex-col gap-4 p-4 max-w-[1700px] mx-auto min-h-[80vh] space-y-2 md:space-y-0 md:grid md:grid-cols-5 md:grid-rows-6">
@@ -63,13 +73,21 @@ export default function Home() {
         <CategoryCard header="Dresses" products={women_dresses} />
         <CategoryCard header="Shoes / High Heels" products={women_shoes} />
         <CategoryCard header="Accessories" products={women_accessories} />
-        <CategoryCard header="Shoes" products={women_shoes} />
       </section>
 
       <section className="max-w-[1700px] mx-auto min-h-[50vh] p-4">
         <ProductSwiper products={women_swiper} />
         <ProductSwiper header={"For Gamers"} products={gamingSwiper} />
         <ProductSwiper products={homeImprovSwiper} />
+      </section>
+
+      <section className="max-w-[1700px] mx-auto min-h-[50vh] p-4 flex flex-wrap gap-4 items-center">
+        {products.map((product) => (
+          <ProductCard
+            key={product._id}
+            product={JSON.parse(JSON.stringify(product))}
+          />
+        ))}
       </section>
     </main>
   );
