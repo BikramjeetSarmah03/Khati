@@ -19,9 +19,11 @@ import {
 import ProductSwiper from "@/components/home/product/ProductsSwiper";
 import Product from "@/models/ProductModel";
 import ProductCard from "@/components/home/product/ProductCard";
+import db from "@/utils/db";
 
 async function getProducts() {
-  const products = Product.find().sort({ createdAt: -1 }).lean();
+  await db.connectDb();
+  const products = await Product.find().sort({ createdAt: -1 }).lean();
 
   return products;
 }

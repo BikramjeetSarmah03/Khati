@@ -10,6 +10,9 @@
   .row-span-7 {
     grid-row: span 7 / span 7;
   }
+  .justify-self-flex-start {
+    justify-self: flex-start;
+  }
 }
 
 @import url(./heroSwiper.css);
