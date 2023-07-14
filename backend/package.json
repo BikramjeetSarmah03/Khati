@@ -4,14 +4,8 @@
   "description": "Full Stack Flipkart Ecommerce",
   "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "node backend/server.js",
-    "frontend": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-    "render-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend",
-    "frontend:install": "npm i --prefix frontend",
-    "prod": "npm i && npm run prod:all",
-    "prod:all": "concurrently \" npm run frontend:install && npm run frontend \" \" npm run server \"  "
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "Jigar Sable",
   "license": "ISC",
