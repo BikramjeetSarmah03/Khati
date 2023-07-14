@@ -2,8 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://khati-server.onrender.com",
-  "homepage": "https://khati.vercel.app",
+  "homepage": "https://khati.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",

@@ -43,7 +43,7 @@ const Shipping = () => {
 
   return (
     <>
-      <MetaData title="Flipkart: Shipping Details" />
+      <MetaData title="Khati: Shipping Details" />
       <main className="w-full mt-20">
         {/* <!-- row --> */}
         <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7 overflow-hidden">
