@@ -7,6 +7,13 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { SnackbarProvider } from "notistack";
 
+import axios from "axios";
+
+axios.create({
+  baseURL: "https://khati-server.onrender.com",
+  withCredentials: true,
+});
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
