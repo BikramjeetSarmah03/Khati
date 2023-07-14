@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^1.0.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
     "@reduxjs/toolkit": "^1.9.5",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
@@ -32,6 +35,8 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.1",
+    "react-share": "^4.4.1",
+    "react-spinners": "^0.13.8",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",

@@ -13,6 +13,20 @@
   .justify-self-flex-start {
     justify-self: flex-start;
   }
+
+  .share {
+    margin-top: 1rem;
+    display: flex;
+    gap: 10px;
+  }
+
+  .share > svg {
+    border-radius: 50%;
+    transition: transform 0.1s ease;
+  }
+  .share > svg:hover {
+    transform: scale(1.1);
+  }
 }
 
 @import url(./heroSwiper.css);

@@ -9,6 +9,7 @@ const nextConfig = {
       "ae01.alicdn.com",
       "img.ltwebstatic.com",
       "ae03.alicdn.com",
+      "pbs.twimg.com",
     ],
   },
 };

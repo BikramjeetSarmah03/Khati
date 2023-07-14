@@ -3,6 +3,7 @@ import Reviews from "@/components/product/Reviews";
 import Category from "@/models/CategoryModel";
 import Product from "@/models/ProductModel";
 import SubCategory from "@/models/SubCategory";
+import User from "@/models/UserModel";
 import db from "@/utils/db";
 
 async function getProductDetails(params, searchParams) {
@@ -15,6 +16,7 @@ async function getProductDetails(params, searchParams) {
   const product = await Product.findOne({ slug })
     .populate({ path: "category", model: Category })
     .populate({ path: "subCategories", model: SubCategory })
+    .populate({ path: "reviews.reviewBy", model: User })
     .lean();
   const subProduct = product.subProducts[style];
   const prices = subProduct.sizes.map((s) => s.price).sort((a, b) => a - b);
@@ -43,9 +45,54 @@ async function getProductDetails(params, searchParams) {
         : subProduct.sizes[size].price,
     priceBefore: subProduct.sizes[size].price,
     quantity: subProduct.sizes[size].qty,
+    ratings: [
+      {
+        percentage: calculatePercentage("5"),
+      },
+      {
+        percentage: calculatePercentage("4"),
+      },
+      {
+        percentage: calculatePercentage("3"),
+      },
+      {
+        percentage: calculatePercentage("2"),
+      },
+      {
+        percentage: calculatePercentage("1"),
+      },
+    ],
+    reviews: product.reviews.reverse(),
+    allSizes: product.subProducts
+      .map((p) => p.sizes)
+      .flat()
+      .sort((a, b) => a.size - b.size)
+      .filter(
+        (element, index, array) =>
+          array.findIndex((el2) => el2.size === element.size) === index
+      ),
   };
 
-  return { product: JSON.parse(JSON.stringify(newProduct)) };
+  const related = await Product.find({ category: product.category._id }).lean();
+
+  function calculatePercentage(num) {
+    return (
+      (product.reviews.reduce((a, review) => {
+        return (
+          a +
+          (review.rating == Number(num) || review.rating == Number(num) + 0.5)
+        );
+      }, 0) *
+        100) /
+      product.reviews.length
+    ).toFixed(1);
+  }
+
+  db.disconnectDb();
+  return {
+    product: JSON.parse(JSON.stringify(newProduct)),
+    related: JSON.parse(JSON.stringify(related)),
+  };
 }
 
 export async function generateMetadata({ params }) {
@@ -54,7 +101,7 @@ export async function generateMetadata({ params }) {
   const product = await Product.findOne({ slug });
 
   return {
-    title: product.name,
+    title: `Khati: ${product.name}`,
   };
 }
 
@@ -73,7 +120,8 @@ export default async function ProductPage({ params, searchParams }) {
 
         <ProductMain product={product} size={searchParams.size} />
 
-        <Reviews />
+        <Reviews product={product} />
+
         {/* Related Product Swiper */}
       </div>
     </div>

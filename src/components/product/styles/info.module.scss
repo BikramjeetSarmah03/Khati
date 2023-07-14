@@ -1,15 +1,14 @@
 .infos {
     color: #666;
-    background: #fff;
+    background: #fff; 
+    max-width: calc(100vw - 30px);
     @media (max-width: 840px) {
       padding-top: 1rem !important;
     }
-    @media (max-width: 460px) {
-      max-width: 340px;
-    }
+    
     &__name {
-      font-size: 14px;
-      font-weight: normal;
+      font-size: 20px;
+      font-weight: bold;
     }
     &__sku {
       font-size: 12px;
@@ -200,9 +199,11 @@
         &__summary {
           background: transparent;
         }
+
       }
     }
   }
+  
   .active_size {
     background-image: linear-gradient(
       to top,

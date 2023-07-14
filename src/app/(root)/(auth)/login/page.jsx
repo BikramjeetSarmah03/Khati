@@ -5,12 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 
 export default function Login() {
   const router = useRouter();
+  const callbackUrl = useSearchParams().get("callbackUrl");
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -36,7 +38,7 @@ export default function Login() {
       }
 
       toast.success("Login Successfull");
-      router.push("/");
+      router.push(callbackUrl || "/");
     } finally {
       setLoading(false);
       setLoginData({

@@ -5,6 +5,10 @@ import { BsHandbagFill, BsHeart } from "react-icons/bs";
 import { useState } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import Share from "./Share";
+import Accordian from "./Accordian";
+import SimillarSwiper from "./SimillarSwiper";
+import DialogModal from "./DialogModal";
 
 export default function Info({ product, setActiveImg }) {
   const paramSize = useSearchParams().get("size");
@@ -14,10 +18,10 @@ export default function Info({ product, setActiveImg }) {
   const [qty, setQty] = useState(1);
 
   return (
-    <div className={styles.infos}>
-      {/* DialogModal */}
+    <div className={`space-y-4 ${styles.infos}`}>
+      <DialogModal />
 
-      <div className={styles.infos__container}>
+      <div>
         <h1 className={styles.infos__name}>{product.name}</h1>
         <h2 className={styles.infos__sku}>{product.sku}</h2>
         <div className={styles.infos__rating}>
@@ -112,9 +116,10 @@ export default function Info({ product, setActiveImg }) {
         </button>
       </div>
 
-      {/* Share */}
-      {/* Accordian */}
-      {/* Similar Swiper */}
+      <Share />
+      <Accordian details={[product.description, ...product.details]} />
+
+      <SimillarSwiper />
     </div>
   );
 }
