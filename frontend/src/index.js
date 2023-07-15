@@ -23,7 +23,7 @@ ReactDOM.render(
           vertical: "bottom",
           horizontal: "center",
         }}>
-        <Router>
+        <Router basename="/">
           <App />
         </Router>
       </SnackbarProvider>
