@@ -1,8 +1,8 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import PriceSidebar from "./PriceSidebar";
-import Stepper from "./Stepper";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import PriceSidebar from './PriceSidebar';
+import Stepper from './Stepper';
 // import {
 //     CardNumberElement,
 //     CardCvcElement,
@@ -10,176 +10,165 @@ import Stepper from "./Stepper";
 //     useStripe,
 //     useElements,
 // } from '@stripe/react-stripe-js';
-import { clearErrors } from "../../actions/orderAction";
-import { useSnackbar } from "notistack";
-import { post } from "../../utils/paytmForm";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import MetaData from "../Layouts/MetaData";
+import { clearErrors } from '../../actions/orderAction';
+import { useSnackbar } from 'notistack';
+import { post } from '../../utils/paytmForm';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import MetaData from '../Layouts/MetaData';
 
 const Payment = () => {
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
-  // const stripe = useStripe();
-  // const elements = useElements();
-  // const paymentBtn = useRef(null);
 
-  const [payDisable, setPayDisable] = useState(false);
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
+    // const stripe = useStripe();
+    // const elements = useElements();
+    // const paymentBtn = useRef(null);
 
-  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.user);
-  const { error } = useSelector((state) => state.newOrder);
+    const [payDisable, setPayDisable] = useState(false);
 
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+    const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+    const { user } = useSelector((state) => state.user);
+    const { error } = useSelector((state) => state.newOrder);
 
-  const paymentData = {
-    amount: Math.round(totalPrice),
-    email: user.email,
-    phoneNo: shippingInfo.phoneNo,
-  };
+    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  // const order = {
-  //     shippingInfo,
-  //     orderItems: cartItems,
-  //     totalPrice,
-  // }
+    const paymentData = {
+        amount: Math.round(totalPrice),
+        email: user.email,
+        phoneNo: shippingInfo.phoneNo,
+    };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+    // const order = {
+    //     shippingInfo,
+    //     orderItems: cartItems,
+    //     totalPrice,
+    // }
 
-    // paymentBtn.current.disabled = true;
-    setPayDisable(true);
+    const submitHandler = async (e) => {
+        e.preventDefault();
 
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+        // paymentBtn.current.disabled = true;
+        setPayDisable(true);
 
-      const { data } = await axios.post(
-        "/api/v1/payment/process",
-        paymentData,
-        config
-      );
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
 
-      let info = {
-        action: "https://securegw-stage.paytm.in/order/process",
-        params: data.paytmParams,
-      };
+            const { data } = await axios.post(
+                '/api/v1/payment/process',
+                paymentData,
+                config,
+            );
 
-      post(info);
+            let info = {
+                action: "https://securegw-stage.paytm.in/order/process",
+                params: data.paytmParams
+            }
 
-      // if (!stripe || !elements) return;
+            post(info)
 
-      // const result = await stripe.confirmCardPayment(client_secret, {
-      //     payment_method: {
-      //         card: elements.getElement(CardNumberElement),
-      //         billing_details: {
-      //             name: user.name,
-      //             email: user.email,
-      //             address: {
-      //                 line1: shippingInfo.address,
-      //                 city: shippingInfo.city,
-      //                 country: shippingInfo.country,
-      //                 state: shippingInfo.state,
-      //                 postal_code: shippingInfo.pincode,
-      //             },
-      //         },
-      //     },
-      // });
+            // if (!stripe || !elements) return;
 
-      // if (result.error) {
-      //     paymentBtn.current.disabled = false;
-      //     enqueueSnackbar(result.error.message, { variant: "error" });
-      // } else {
-      //     if (result.paymentIntent.status === "succeeded") {
+            // const result = await stripe.confirmCardPayment(client_secret, {
+            //     payment_method: {
+            //         card: elements.getElement(CardNumberElement),
+            //         billing_details: {
+            //             name: user.name,
+            //             email: user.email,
+            //             address: {
+            //                 line1: shippingInfo.address,
+            //                 city: shippingInfo.city,
+            //                 country: shippingInfo.country,
+            //                 state: shippingInfo.state,
+            //                 postal_code: shippingInfo.pincode,
+            //             },
+            //         },
+            //     },
+            // });
 
-      //         order.paymentInfo = {
-      //             id: result.paymentIntent.id,
-      //             status: result.paymentIntent.status,
-      //         };
+            // if (result.error) {
+            //     paymentBtn.current.disabled = false;
+            //     enqueueSnackbar(result.error.message, { variant: "error" });
+            // } else {
+            //     if (result.paymentIntent.status === "succeeded") {
 
-      //         dispatch(newOrder(order));
-      //         dispatch(emptyCart());
+            //         order.paymentInfo = {
+            //             id: result.paymentIntent.id,
+            //             status: result.paymentIntent.status,
+            //         };
 
-      //         navigate("/order/success");
-      //     } else {
-      //         enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
-      //     }
-      // }
-    } catch (error) {
-      // paymentBtn.current.disabled = false;
-      setPayDisable(false);
-      enqueueSnackbar(error, { variant: "error" });
-    }
-  };
+            //         dispatch(newOrder(order));
+            //         dispatch(emptyCart());
 
-  useEffect(() => {
-    if (error) {
-      dispatch(clearErrors());
-      enqueueSnackbar(error, { variant: "error" });
-    }
-  }, [dispatch, error, enqueueSnackbar]);
+            //         navigate("/order/success");
+            //     } else {
+            //         enqueueSnackbar("Processing Payment Failed!", { variant: "error" });
+            //     }
+            // }
 
-  return (
-    <>
-      <MetaData title="Khati: Secure Payment | Paytm" />
+        } catch (error) {
+            // paymentBtn.current.disabled = false;
+            setPayDisable(false);
+            enqueueSnackbar(error, { variant: "error" });
+        }
+    };
 
-      <main className="w-full mt-20">
-        {/* <!-- row --> */}
-        <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
-          {/* <!-- cart column --> */}
-          <div className="flex-1">
-            <Stepper activeStep={3}>
-              <div className="w-full bg-white">
-                <form
-                  onSubmit={(e) => submitHandler(e)}
-                  autoComplete="off"
-                  className="flex flex-col justify-start w-full gap-2 mx-8 my-4 overflow-hidden">
-                  <FormControl>
-                    <RadioGroup
-                      aria-labelledby="payment-radio-group"
-                      defaultValue="paytm"
-                      name="payment-radio-button">
-                      <FormControlLabel
-                        value="paytm"
-                        control={<Radio />}
-                        label={
-                          <div className="flex items-center gap-4">
-                            <img
-                              draggable="false"
-                              className="object-contain w-6 h-6"
-                              src="https://rukminim1.flixcart.com/www/96/96/promos/01/09/2020/a07396d4-0543-4b19-8406-b9fcbf5fd735.png"
-                              alt="Paytm Logo"
-                            />
-                            <span>Paytm</span>
-                          </div>
-                        }
-                      />
-                    </RadioGroup>
-                  </FormControl>
+    useEffect(() => {
+        if (error) {
+            dispatch(clearErrors());
+            enqueueSnackbar(error, { variant: "error" });
+        }
+    }, [dispatch, error, enqueueSnackbar]);
 
-                  <input
-                    type="submit"
-                    value={`Pay ₹${totalPrice.toLocaleString()}`}
-                    disabled={payDisable ? true : false}
-                    className={`${
-                      payDisable
-                        ? "bg-primary-grey cursor-not-allowed"
-                        : "bg-primary-orange cursor-pointer"
-                    } w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`}
-                  />
-                </form>
 
-                {/* stripe form */}
-                {/* <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start w-full gap-3 mx-8 my-4 sm:w-3/4">
+    return (
+        <>
+            <MetaData title="Flipkart: Secure Payment | Paytm" />
+
+            <main className="w-full mt-20">
+
+                {/* <!-- row --> */}
+                <div className="flex flex-col sm:flex-row gap-3.5 w-full sm:w-11/12 mt-0 sm:mt-4 m-auto sm:mb-7">
+
+                    {/* <!-- cart column --> */}
+                    <div className="flex-1">
+
+                        <Stepper activeStep={3}>
+                            <div className="w-full bg-white">
+
+                                <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-2 w-full mx-8 my-4 overflow-hidden">
+                                    <FormControl>
+                                        <RadioGroup
+                                            aria-labelledby="payment-radio-group"
+                                            defaultValue="paytm"
+                                            name="payment-radio-button"
+                                        >
+                                            <FormControlLabel
+                                                value="paytm"
+                                                control={<Radio />}
+                                                label={
+                                                    <div className="flex items-center gap-4">
+                                                        <img draggable="false" className="h-6 w-6 object-contain" src="https://rukminim1.flixcart.com/www/96/96/promos/01/09/2020/a07396d4-0543-4b19-8406-b9fcbf5fd735.png" alt="Paytm Logo" />
+                                                        <span>Paytm</span>
+                                                    </div>
+                                                }
+                                            />
+                                        </RadioGroup>
+                                    </FormControl>
+
+                                    <input type="submit" value={`Pay ₹${totalPrice.toLocaleString()}`} disabled={payDisable ? true : false} className={`${payDisable ? "bg-primary-grey cursor-not-allowed" : "bg-primary-orange cursor-pointer"} w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`} />
+
+                                </form>
+
+                                {/* stripe form */}
+                                {/* <form onSubmit={(e) => submitHandler(e)} autoComplete="off" className="flex flex-col justify-start gap-3 w-full sm:w-3/4 mx-8 my-4">
                                 <div>
                                     <CardNumberElement />
                                 </div>
@@ -191,16 +180,17 @@ const Payment = () => {
                                 </div>
                                 <input ref={paymentBtn} type="submit" value="Pay" className="bg-primary-orange w-full sm:w-1/3 my-2 py-3.5 text-sm font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none cursor-pointer" />
                             </form> */}
-                {/* stripe form */}
-              </div>
-            </Stepper>
-          </div>
+                                {/* stripe form */}
 
-          <PriceSidebar cartItems={cartItems} />
-        </div>
-      </main>
-    </>
-  );
+                            </div>
+                        </Stepper>
+                    </div>
+
+                    <PriceSidebar cartItems={cartItems} />
+                </div>
+            </main>
+        </>
+    );
 };
 
 export default Payment;

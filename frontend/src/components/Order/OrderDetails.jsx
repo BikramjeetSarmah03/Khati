@@ -1,120 +1,100 @@
-import { useSnackbar } from "notistack";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { clearErrors, getOrderDetails } from "../../actions/orderAction";
-import Loader from "../Layouts/Loader";
-import TrackStepper from "./TrackStepper";
-import MinCategory from "../Layouts/MinCategory";
-import MetaData from "../Layouts/MetaData";
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { clearErrors, getOrderDetails } from '../../actions/orderAction';
+import Loader from '../Layouts/Loader';
+import TrackStepper from './TrackStepper';
+import MinCategory from '../Layouts/MinCategory';
+import MetaData from '../Layouts/MetaData';
 
 const OrderDetails = () => {
-  const dispatch = useDispatch();
-  const { enqueueSnackbar } = useSnackbar();
-  const params = useParams();
 
-  const { order, error, loading } = useSelector((state) => state.orderDetails);
+    const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
+    const params = useParams();
 
-  useEffect(() => {
-    if (error) {
-      enqueueSnackbar(error, { variant: "error" });
-      dispatch(clearErrors());
-    }
-    dispatch(getOrderDetails(params.id));
-  }, [dispatch, error, params.id, enqueueSnackbar]);
+    const { order, error, loading } = useSelector((state) => state.orderDetails);
 
-  return (
-    <>
-      <MetaData title="Order Details | Khati" />
+    useEffect(() => {
+        if (error) {
+            enqueueSnackbar(error, { variant: "error" });
+            dispatch(clearErrors());
+        }
+        dispatch(getOrderDetails(params.id));
+    }, [dispatch, error, params.id, enqueueSnackbar]);
 
-      <MinCategory />
-      <main className="w-full mt-14 sm:mt-4">
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            {order && order.user && order.shippingInfo && (
-              <div className="flex flex-col max-w-6xl gap-4 mx-auto">
-                <div className="flex min-w-full bg-white rounded-sm shadow">
-                  <div className="border-r sm:w-1/2">
-                    <div className="flex flex-col gap-3 mx-10 my-8">
-                      <h3 className="text-lg font-medium">Delivery Address</h3>
-                      <h4 className="font-medium">{order.user.name}</h4>
-                      <p className="text-sm">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
-                      <div className="flex gap-2 text-sm">
-                        <p className="font-medium">Email</p>
-                        <p>{order.user.email}</p>
-                      </div>
-                      <div className="flex gap-2 text-sm">
-                        <p className="font-medium">Phone Number</p>
-                        <p>{order.shippingInfo.phoneNo}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    return (
+        <>
+            <MetaData title="Order Details | Flipkart" />
 
-                {order.orderItems &&
-                  order.orderItems.map((item) => {
-                    const { _id, image, name, price, quantity } = item;
+            <MinCategory />
+            <main className="w-full mt-14 sm:mt-4">
+                {loading ? <Loader /> : (
+                    <>
+                        {order && order.user && order.shippingInfo && (
+                            <div className="flex flex-col gap-4 max-w-6xl mx-auto">
 
-                    return (
-                      <div
-                        className="flex flex-col min-w-full px-2 py-5 bg-white rounded-sm shadow sm:flex-row"
-                        key={_id}>
-                        <div className="flex flex-col gap-2 sm:flex-row sm:w-1/2">
-                          <div className="w-full h-20 sm:w-32">
-                            <img
-                              draggable="false"
-                              className="object-contain w-full h-full"
-                              src={image}
-                              alt={name}
-                            />
-                          </div>
-                          <div className="flex flex-col gap-1 overflow-hidden">
-                            <p className="text-sm">
-                              {name.length > 60
-                                ? `${name.substring(0, 60)}...`
-                                : name}
-                            </p>
-                            <p className="mt-2 text-xs text-gray-600">
-                              Quantity: {quantity}
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              Price: ₹{price.toLocaleString()}
-                            </p>
-                            <span className="font-medium">
-                              Total: ₹{(quantity * price).toLocaleString()}
-                            </span>
-                          </div>
-                        </div>
+                                <div className="flex bg-white shadow rounded-sm min-w-full">
+                                    <div className="sm:w-1/2 border-r">
+                                        <div className="flex flex-col gap-3 my-8 mx-10">
+                                            <h3 className="font-medium text-lg">Delivery Address</h3>
+                                            <h4 className="font-medium">{order.user.name}</h4>
+                                            <p className="text-sm">{`${order.shippingInfo.address}, ${order.shippingInfo.city}, ${order.shippingInfo.state} - ${order.shippingInfo.pincode}`}</p>
+                                            <div className="flex gap-2 text-sm">
+                                                <p className="font-medium">Email</p>
+                                                <p>{order.user.email}</p>
+                                            </div>
+                                            <div className="flex gap-2 text-sm">
+                                                <p className="font-medium">Phone Number</p>
+                                                <p>{order.shippingInfo.phoneNo}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div className="flex flex-col w-full sm:w-1/2">
-                          <h3 className="font-medium sm:text-center">
-                            Order Status
-                          </h3>
-                          <TrackStepper
-                            orderOn={order.createdAt}
-                            shippedAt={order.shippedAt}
-                            deliveredAt={order.deliveredAt}
-                            activeStep={
-                              order.orderStatus === "Delivered"
-                                ? 2
-                                : order.orderStatus === "Shipped"
-                                ? 1
-                                : 0
-                            }
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-              </div>
-            )}
-          </>
-        )}
-      </main>
-    </>
-  );
+                                {order.orderItems && order.orderItems.map((item) => {
+
+                                    const { _id, image, name, price, quantity } = item;
+
+                                    return (
+                                        <div className="flex flex-col sm:flex-row min-w-full shadow rounded-sm bg-white px-2 py-5" key={_id}>
+
+                                            <div className="flex flex-col sm:flex-row sm:w-1/2 gap-2">
+                                                <div className="w-full sm:w-32 h-20">
+                                                    <img draggable="false" className="h-full w-full object-contain" src={image} alt={name} />
+                                                </div>
+                                                <div className="flex flex-col gap-1 overflow-hidden">
+                                                    <p className="text-sm">{name.length > 60 ? `${name.substring(0, 60)}...` : name}</p>
+                                                    <p className="text-xs text-gray-600 mt-2">Quantity: {quantity}</p>
+                                                    <p className="text-xs text-gray-600">Price: ₹{price.toLocaleString()}</p>
+                                                    <span className="font-medium">Total: ₹{(quantity * price).toLocaleString()}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-col w-full sm:w-1/2">
+                                                <h3 className="font-medium sm:text-center">Order Status</h3>
+                                                <TrackStepper
+                                                    orderOn={order.createdAt}
+                                                    shippedAt={order.shippedAt}
+                                                    deliveredAt={order.deliveredAt}
+                                                    activeStep={
+                                                        order.orderStatus === "Delivered" ? 2 : order.orderStatus === "Shipped" ? 1 : 0
+                                                    }
+                                                />
+                                            </div>
+
+                                        </div>
+                                    )
+                                })
+                                }
+                            </div>
+                        )}
+                    </>
+                )}
+            </main>
+        </>
+    );
 };
 
 export default OrderDetails;
