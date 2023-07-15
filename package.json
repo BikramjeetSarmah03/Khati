@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend",
     "frontend:install": "npm i --prefix frontend",
-    "prod": "concurrently \" npm run frontend:install && npm run frontend \"  \" npm run server \"  "
+    "prod:run": "concurrently \" npm run frontend:install && npm run frontend \"  \" npm run server \" ",
+    "prod": "npm i && npm run prod:run"
   },
   "author": "Jigar Sable",
   "license": "ISC",
