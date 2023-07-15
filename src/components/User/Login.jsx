@@ -83,22 +83,6 @@ const Login = () => {
 
                   {/* <!-- button container --> */}
                   <div className="flex flex-col gap-2.5 mt-2 mb-32">
-                    <p className="text-xs text-left text-primary-grey">
-                      By continuing, you agree to Flipkart's{" "}
-                      <a
-                        href="https://www.flipkart.com/pages/terms"
-                        className="text-primary-blue">
-                        {" "}
-                        Terms of Use
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="https://www.flipkart.com/pages/privacypolicy"
-                        className="text-primary-blue">
-                        {" "}
-                        Privacy Policy.
-                      </a>
-                    </p>
                     <button
                       type="submit"
                       className="w-full py-3 font-medium text-white rounded-sm shadow bg-primary-orange hover:shadow-lg">
@@ -118,7 +102,7 @@ const Login = () => {
               <Link
                 to="/register"
                 className="text-sm font-medium text-primary-blue">
-                New to Flipkart? Create an account
+                New to Khati? Create an account
               </Link>
             </div>
             {/* <!-- edit info container --> */}
