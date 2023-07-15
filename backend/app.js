@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://project-khati.netlify.app/",
     credentials: true,
   })
 );
