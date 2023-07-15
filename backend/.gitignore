@@ -1,5 +1,0 @@
-# dependencies
-/node_modules
-
-# local env files
-/backend/config/config.env
