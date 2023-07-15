@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
-  "author": "Jigar Sable",
+  "author": "Bikramjeet Sarmah",
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.6.0",
