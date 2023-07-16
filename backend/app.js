@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
