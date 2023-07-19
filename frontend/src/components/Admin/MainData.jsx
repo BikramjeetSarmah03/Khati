@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "chart.js/auto";
 import { Bar, Doughnut, Line, Pie } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders } from "../../actions/orderAction";
