@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-import { useEffect } from "react";
-=======
->>>>>>> Stashed changes
 import "chart.js/auto";
 import { Bar, Doughnut, Line, Pie } from "react-chartjs-2";
 import { useEffect } from "react";
