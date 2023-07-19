@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node backend/server.js",
     "server": "node backend/server.js",
+    "server:dev": "nodemon backend/server.js",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm install --prefix frontend && npm run frontend\"",
+    "dev:local": "concurrently \"npm run server\" \" npm run frontend\"",
     "render-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Bikramjeet Sarmah",

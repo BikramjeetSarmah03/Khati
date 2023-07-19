@@ -27,7 +27,10 @@ const Payment = () => {
   // const elements = useElements();
   // const paymentBtn = useRef(null);
 
-  const [payDisable, setPayDisable] = useState(false);
+  // NOTE: API Keys not avaible
+  const errorMsg =
+    "There is some issues with API keys. Hence payment isn't working";
+  const [payDisable, setPayDisable] = useState(true);
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
@@ -166,16 +169,19 @@ const Payment = () => {
                     </RadioGroup>
                   </FormControl>
 
-                  <input
-                    type="submit"
-                    value={`Pay ₹${totalPrice.toLocaleString()}`}
-                    disabled={payDisable ? true : false}
-                    className={`${
-                      payDisable
-                        ? "bg-primary-grey cursor-not-allowed"
-                        : "bg-primary-orange cursor-pointer"
-                    } w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`}
-                  />
+                  <div>
+                    <input
+                      type="submit"
+                      value={`Pay ₹${totalPrice.toLocaleString()}`}
+                      disabled={payDisable ? true : false}
+                      className={`${
+                        payDisable
+                          ? "bg-primary-grey cursor-not-allowed"
+                          : "bg-primary-orange cursor-pointer"
+                      } w-1/2 sm:w-1/4 my-2 py-3 font-medium text-white shadow hover:shadow-lg rounded-sm uppercase outline-none`}
+                    />
+                    {errorMsg && <p>{errorMsg}</p>}
+                  </div>
                 </form>
 
                 {/* stripe form */}

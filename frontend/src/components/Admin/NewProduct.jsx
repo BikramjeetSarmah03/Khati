@@ -46,7 +46,7 @@ const NewProduct = () => {
   };
 
   const addSpecs = () => {
-    if (!specsInput.title.trim() || !specsInput.title.trim()) return;
+    if (!specsInput.title.trim() || !specsInput.description.trim()) return;
     setSpecs([...specs, specsInput]);
     setSpecsInput({ title: "", description: "" });
   };
@@ -280,7 +280,9 @@ const NewProduct = () => {
 
             <div className="flex flex-col gap-1.5">
               {highlights.map((h, i) => (
-                <div className="flex items-center justify-between px-2 py-1 rounded bg-green-50">
+                <div
+                  className="flex items-center justify-between px-2 py-1 rounded bg-green-50"
+                  key={i}>
                   <p className="text-sm font-medium text-green-800">{h}</p>
                   <span
                     onClick={() => deleteHighlight(i)}
@@ -359,7 +361,9 @@ const NewProduct = () => {
 
           <div className="flex flex-col gap-1.5">
             {specs.map((spec, i) => (
-              <div className="flex items-center justify-between px-2 py-1 text-sm rounded bg-blue-50">
+              <div
+                className="flex items-center justify-between px-2 py-1 text-sm rounded bg-blue-50"
+                key={i}>
                 <p className="font-medium text-gray-500">{spec.title}</p>
                 <p>{spec.description}</p>
                 <span

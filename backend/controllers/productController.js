@@ -77,7 +77,7 @@ exports.createProduct = asyncErrorHandler(async (req, res, next) => {
 
   for (let i = 0; i < images.length; i++) {
     const result = await cloudinary.v2.uploader.upload(images[i], {
-      folder: "khati/products",
+      folder: "Khati/products",
     });
 
     imagesLink.push({
@@ -87,8 +87,9 @@ exports.createProduct = asyncErrorHandler(async (req, res, next) => {
   }
 
   const result = await cloudinary.v2.uploader.upload(req.body.logo, {
-    folder: "khati/brands",
+    folder: "Khati/brands",
   });
+
   const brandLogo = {
     public_id: result.public_id,
     url: result.secure_url,
@@ -138,7 +139,7 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
 
     for (let i = 0; i < images.length; i++) {
       const result = await cloudinary.v2.uploader.upload(images[i], {
-        folder: "khati/products",
+        folder: "Khati/products",
       });
 
       imagesLink.push({
@@ -152,7 +153,7 @@ exports.updateProduct = asyncErrorHandler(async (req, res, next) => {
   if (req.body.logo.length > 0) {
     await cloudinary.v2.uploader.destroy(product.brand.logo.public_id);
     const result = await cloudinary.v2.uploader.upload(req.body.logo, {
-      folder: "khati/brands",
+      folder: "Khati/brands",
     });
     const brandLogo = {
       public_id: result.public_id,

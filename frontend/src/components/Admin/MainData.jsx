@@ -1,6 +1,10 @@
+<<<<<<< Updated upstream
 import { useEffect } from "react";
+=======
+>>>>>>> Stashed changes
 import "chart.js/auto";
 import { Bar, Doughnut, Line, Pie } from "react-chartjs-2";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllOrders } from "../../actions/orderAction";
 import { getAdminProducts } from "../../actions/productAction";
@@ -84,7 +88,7 @@ const MainData = () => {
         label: `Sales in ${date.getFullYear()}`,
         borderColor: "#4ade80",
         backgroundColor: "#4ade80",
-        data: months.map((m, i) =>
+        data: months?.map((m, i) =>
           orders
             ?.filter(
               (od) =>
@@ -105,7 +109,7 @@ const MainData = () => {
       {
         backgroundColor: ["#9333ea", "#facc15", "#4ade80"],
         hoverBackgroundColor: ["#a855f7", "#fde047", "#86efac"],
-        data: statuses.map(
+        data: statuses?.map(
           (status) =>
             orders?.filter((item) => item.orderStatus === status).length
         ),
@@ -119,7 +123,7 @@ const MainData = () => {
       {
         backgroundColor: ["#ef4444", "#22c55e"],
         hoverBackgroundColor: ["#dc2626", "#16a34a"],
-        data: [outOfStock, products.length - outOfStock],
+        data: [outOfStock, products?.length - outOfStock],
       },
     ],
   };
@@ -132,8 +136,8 @@ const MainData = () => {
         borderColor: "#9333ea",
         backgroundColor: "#9333ea",
         hoverBackgroundColor: "#6b21a8",
-        data: categories.map(
-          (cat) => products?.filter((item) => item.category === cat).length
+        data: categories?.map(
+          (cat) => products?.filter((item) => item?.category === cat).length
         ),
       },
     ],
