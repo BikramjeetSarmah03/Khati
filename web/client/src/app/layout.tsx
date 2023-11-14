@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 
 import "@/styles/globals.css";
+import { cn } from "@/lib/utils";
+
+import Header from "@/components/layout/Header";
 
 const font = Lato({
   subsets: ["latin"],
@@ -20,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={cn(font.className)}>
+        <Header />
+        <main className="bg-gray-100 h-full w-full">{children}</main>
+      </body>
     </html>
   );
 }

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+:root {
+  height: 100%;
+  width: 100%;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -71,5 +78,73 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .shopButton {
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    border: 1px solid rgb(157, 156, 156);
+  }
+
+  .shopButton:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #20d199;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+
+  .shopButton:hover,
+  .shopButton:focus,
+  .shopButton:active {
+    color: white;
+    border-color: #20d199;
+  }
+  .shopButton:hover:before,
+  .shopButton:focus:before,
+  .shopButton:active:before {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    border-color: #20d199;
+  }
+
+  .heroSwiper > .swiper-button-prev::after,
+  .heroSwiper > .swiper-button-next::after {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.525);
+    @apply text-lg p-2 md:p-4;
+  }
+  .heroSwiper > .swiper-button-prev::after {
+    @apply -ml-6;
+    @apply border-black/30 border-2 border-l-0;
+  }
+  .heroSwiper > .swiper-button-next::after {
+    @apply -mr-5;
+    @apply border-black/30 border-2 border-r-0;
   }
 }
