@@ -1,9 +1,10 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import Link from "next/link";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -16,11 +17,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import SocialButtons from "@/components/ui/social-buttons";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Please enter username",
-  }),
+  email: z
+    .string()
+    .min(1, {
+      message: "Please enter email",
+    })
+    .email("Please enter a valid email"),
   password: z.string().min(1, { message: "Please enter password" }),
 });
 
@@ -30,7 +35,8 @@ export default function Login() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: "",
     },
   });
 
@@ -41,8 +47,8 @@ export default function Login() {
   const toggleShowPass = () => setShowPass(!showPass);
 
   return (
-    <div className="bg-white border shadow rounded-md">
-      <h1 className="border-b p-4 text-center">
+    <div className="bg-white border shadow rounded-md w-full max-w-96">
+      <h1 className="border-b p-4 text-center text-xl">
         Login To{" "}
         <span className="font-semibold font-serif text-orange-500">Khati</span>
       </h1>
@@ -51,12 +57,12 @@ export default function Login() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4">
           <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Username" {...field} />
+                  <Input placeholder="john@email.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -89,9 +95,33 @@ export default function Login() {
             )}
           />
 
+          <div className="text-sm text-right font-semibold text-blue-600 ">
+            <Link href={"/auth/forgot-password"} className="hover:underline">
+              Forgot Password ?
+            </Link>
+          </div>
+
           <Button type="submit" className="w-full">
             Submit
           </Button>
+
+          <div className="text-center flex items-center justify-center gap-4">
+            <div className="h-px w-full bg-gray-200" />
+            <h2 className="text-nowrap">Or continue with</h2>
+            <div className="h-px w-full bg-gray-200" />
+          </div>
+
+          <SocialButtons />
+
+          <div className="text-sm text-center">
+            {`Don't`} have an account ?{" "}
+            <Link
+              href={"/auth/register"}
+              className="text-blue-600 hover:underline"
+            >
+              Register
+            </Link>
+          </div>
         </form>
       </Form>
     </div>
