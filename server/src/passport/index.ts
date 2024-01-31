@@ -1,3 +1,4 @@
+import argon from "argon2";
 import { PassportStatic } from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 
@@ -8,10 +9,14 @@ export const initializePassport = (passport: PassportStatic) => {
       async (email, password, done) => {
         try {
           // find in db
-          //   const user = true;
-          //   if (!user) return done(null, false);
-          //   if (user.password !== password) return done(null, false);
-          //   return done(null, user);
+          const user = await prisma?.user.findUnique({ where: { email } });
+
+          if (!user) return done(null, false);
+
+          const verifyPassword = await argon.verify(password, user.password!);
+          if (!verifyPassword) return done(null, false);
+
+          return done(null, user);
         } catch (error) {
           return done(error, false);
         }
@@ -20,12 +25,17 @@ export const initializePassport = (passport: PassportStatic) => {
   );
 
   passport.serializeUser((user, done) => {
-    // done(null, user.id);
+    done(null, user.id);
   });
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = true;
+      const user = await prisma?.user.findUnique({
+        where: { id: id as string },
+      });
+
+      if (!user) return done(null, false);
+
       done(null, user);
     } catch (error) {
       done(error, false);
