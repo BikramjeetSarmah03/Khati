@@ -18,6 +18,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import SocialButtons from "@/components/ui/social-buttons";
+import LoadingButton from "@/components/ui/loading-button";
+import toast from "react-hot-toast";
+import { api } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z
@@ -31,6 +35,7 @@ const formSchema = z.object({
 
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,8 +45,19 @@ export default function Login() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const { data: resData } = await api.post("/auth/login/manual", values);
+
+      if (resData.success) {
+        toast.success("Login Successful");
+        router.push("/");
+      } else {
+        throw Error("Error while submitting login form");
+      }
+    } catch (error) {
+      toast.error("Error while submitting form");
+    }
   }
 
   const toggleShowPass = () => setShowPass(!showPass);
@@ -84,8 +100,7 @@ export default function Login() {
                     <button
                       className="absolute top-2 right-2 z-10"
                       type="button"
-                      onClick={toggleShowPass}
-                    >
+                      onClick={toggleShowPass}>
                       {showPass ? <EyeOffIcon /> : <EyeIcon />}
                     </button>
                   </div>
@@ -101,9 +116,12 @@ export default function Login() {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full">
+          <LoadingButton
+            loading={form.formState.isSubmitting}
+            type="submit"
+            className="w-full">
             Submit
-          </Button>
+          </LoadingButton>
 
           <div className="text-center flex items-center justify-center gap-4">
             <div className="h-px w-full bg-gray-200" />
@@ -117,8 +135,7 @@ export default function Login() {
             {`Don't`} have an account ?{" "}
             <Link
               href={"/auth/register"}
-              className="text-blue-600 hover:underline"
-            >
+              className="text-blue-600 hover:underline">
               Register
             </Link>
           </div>

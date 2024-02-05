@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import SocialButtons from "@/components/ui/social-buttons";
+import toast from "react-hot-toast";
+import { api } from "@/lib/api";
+import LoadingButton from "@/components/ui/loading-button";
 
 const formSchema = z
   .object({
@@ -49,11 +52,22 @@ export default function Register() {
       email: "",
       password: "",
       confirmPassword: "",
+      fullName: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const { data: resData } = await api.post("/auth/register", values);
+
+      if (resData.success) {
+        toast.success("Registered successful");
+      } else {
+        throw Error("Error while submitting form");
+      }
+    } catch (error) {
+      toast.error("Error while submitting form");
+    }
   }
 
   return (
@@ -125,9 +139,12 @@ export default function Register() {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <LoadingButton
+            loading={form.formState.isSubmitting}
+            type="submit"
+            className="w-full">
             Submit
-          </Button>
+          </LoadingButton>
 
           <div className="text-center flex items-center justify-center gap-4">
             <div className="h-px w-full bg-gray-200" />
@@ -141,8 +158,7 @@ export default function Register() {
             Already have an account ?{" "}
             <Link
               href={"/auth/login"}
-              className="text-blue-600 hover:underline"
-            >
+              className="text-blue-600 hover:underline">
               Login
             </Link>
           </div>

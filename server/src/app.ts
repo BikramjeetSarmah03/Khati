@@ -7,6 +7,7 @@ import passport from "passport";
 
 import routes from "./routes";
 import { initializePassport } from "./passport";
+import { errorMiddleware } from "./middlewares/error";
 
 const app = express();
 
@@ -39,6 +40,8 @@ app.use(
   })
 );
 
-app.use("/", routes);
+app.use("/api/v1", routes);
+
+app.use(errorMiddleware);
 
 export default app;
