@@ -22,6 +22,7 @@ import LoadingButton from "@/components/ui/loading-button";
 import toast from "react-hot-toast";
 import { api } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 
 const formSchema = z.object({
   email: z
@@ -36,6 +37,7 @@ const formSchema = z.object({
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
   const router = useRouter();
+  const { setAuth } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,6 +53,7 @@ export default function Login() {
 
       if (resData.success) {
         toast.success("Login Successful");
+        setAuth(true, resData.user);
         router.push("/");
       } else {
         throw Error("Error while submitting login form");
@@ -100,7 +103,8 @@ export default function Login() {
                     <button
                       className="absolute top-2 right-2 z-10"
                       type="button"
-                      onClick={toggleShowPass}>
+                      onClick={toggleShowPass}
+                    >
                       {showPass ? <EyeOffIcon /> : <EyeIcon />}
                     </button>
                   </div>
@@ -119,7 +123,8 @@ export default function Login() {
           <LoadingButton
             loading={form.formState.isSubmitting}
             type="submit"
-            className="w-full">
+            className="w-full"
+          >
             Submit
           </LoadingButton>
 
@@ -135,7 +140,8 @@ export default function Login() {
             {`Don't`} have an account ?{" "}
             <Link
               href={"/auth/register"}
-              className="text-blue-600 hover:underline">
+              className="text-blue-600 hover:underline"
+            >
               Register
             </Link>
           </div>

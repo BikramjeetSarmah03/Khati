@@ -5,9 +5,12 @@ export const isAuthenticated = async (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.user) return next();
+  if (req.isAuthenticated()) {
+    console.log(req.user);
+    return next();
+  }
 
-  res.status(401).json({
+  return res.status(401).json({
     success: true,
     message: "Unauthorized",
   });

@@ -15,6 +15,7 @@ router.post(
   passport.authenticate("local", {
     // failureRedirect: `${CLIENT_URL}/auth/register`,
     // successRedirect: `${CLIENT_URL}`,
+    session: true,
   }),
   (req, res) => {
     console.log("User authenticated");

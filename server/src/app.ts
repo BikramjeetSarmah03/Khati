@@ -11,20 +11,18 @@ import { errorMiddleware } from "./middlewares/error";
 
 const app = express();
 
+initializePassport(passport);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
   expressSession({
     secret: process.env.SESSION_KEY || "secretKey123",
     resave: false,
     saveUninitialized: false,
+    cookie: { secure: true },
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
-initializePassport(passport);
-
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -33,12 +31,8 @@ app.use(
   })
 );
 
-app.use(
-  cors({
-    origin: process.env.ORIGINS,
-    credentials: true,
-  })
-);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/api/v1", routes);
 
