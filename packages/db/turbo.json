@@ -1,0 +1,18 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "db:push": {
+      "dependsOn": [],
+      "outputs": []
+    },
+    "db:generate": {
+      "dependsOn": [],
+      "outputs": []
+    },
+    "db:migrate": {
+      "dependsOn": [],
+      "outputs": []
+    }
+  }
+}

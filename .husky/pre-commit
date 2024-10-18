@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+print_color() {
+  color="$1"
+  shift
+  echo -e "\033[${color}m$* \033[0m"
+}
+
+# Lint-Staged (Formatting + Linting)
+print_color 33 "\nRunning lint-staged (formatting + linting)..."
+pnpm lint-staged
+result=$? 
+
+if [ "$result" -eq 0 ]; then
+  print_color 32 "Lint-staged checks passed! ✅"
+else
+  print_color 31 "Lint-staged checks failed! ❌"
+  print_color 31 "Please fix the issues before committing."
+  exit 1
+fi
+
+# Separator 
+printf -- "%-.*s\n" $(tput cols) 
+
+# Build (local)
+print_color 33 "Building (local)..."
+pnpm build
+build_result=$?
+
+if [ "$build_result" -eq 0 ]; then
+  print_color 32 "Build phase passed! ✅"
+else
+  print_color 31 "Build phase failed! ❌"
+  print_color 31 "Please fix the build errors before committing."
+  exit 1
+fi
+
+print_color 32 "\nAll checks passed! ✅"
+echo "Committing changes...\n"

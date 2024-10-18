@@ -36,3 +36,8 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+dev.db
+local.db
+test.db

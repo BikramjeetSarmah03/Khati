@@ -1,0 +1,15 @@
+{
+  "name": "@khati/env",
+  "version": "1.0.0",
+  "description": "All environment variables",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "dotenv-expand": "^11.0.6"
+  },
+  "devDependencies": {
+    "zod": "^3.23.8"
+  }
+}

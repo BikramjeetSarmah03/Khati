@@ -1,7 +1,15 @@
 {
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+    {"pattern": "apps/*/"},
+    {"mode": "auto"}
+  ],
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/page.tsx": "${dirname}/page.tsx",
+    "**/app/**/layout.tsx": "${dirname}/layout.tsx"
+  }
 }

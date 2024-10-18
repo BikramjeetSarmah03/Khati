@@ -1,0 +1,20 @@
+{
+  "name": "@khati/api",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "dist/server.ts",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.2",
+    "hono": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "tsc-alias": "^1.8.10"
+  }
+}

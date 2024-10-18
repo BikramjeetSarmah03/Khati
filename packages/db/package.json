@@ -1,0 +1,23 @@
+{
+  "name": "@khati/db",
+  "version": "1.0.0",
+  "description": "Database Package",
+  "scripts": {
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@khati/env": "workspace:^",
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.35.2"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.26.2",
+    "tsx": "^4.7.1"
+  }
+}
