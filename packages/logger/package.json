@@ -1,0 +1,11 @@
+{
+  "name": "@khati/logger",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "winston": "^3.14.2"
+  }
+}

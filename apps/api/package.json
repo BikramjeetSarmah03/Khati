@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.13.2",
-    "hono": "^4.6.5"
+    "@hono/zod-openapi": "^0.16.4",
+    "@scalar/hono-api-reference": "^0.5.155",
+    "hono": "^4.6.5",
+    "stoker": "^1.2.7"
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1",
-    "tsc-alias": "^1.8.10"
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "eslint": "^9.13.0",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.7.1"
   }
 }

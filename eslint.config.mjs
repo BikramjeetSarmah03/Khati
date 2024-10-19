@@ -27,7 +27,7 @@ export default [
       tailwindcss: tailwindcss,
     },
     rules: {
-      "no-unused-vars": "off", // Disable base ESLint rule
+      "no-unused-vars": "error", // unused vars error
       "@typescript-eslint/no-unused-vars": "error", // Enable TypeScript rule
       "@typescript-eslint/no-explicit-any": "error", // Disallow 'any' type
       "tailwindcss/classnames-order": "off", // Tailwind classnames order rule
