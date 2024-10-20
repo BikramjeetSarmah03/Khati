@@ -10,6 +10,7 @@
   "dependencies": {
     "@hono/node-server": "^1.13.2",
     "@hono/zod-openapi": "^0.16.4",
+    "@khati/env": "workspace:^",
     "@scalar/hono-api-reference": "^0.5.155",
     "hono": "^4.6.5",
     "stoker": "^1.2.7"
