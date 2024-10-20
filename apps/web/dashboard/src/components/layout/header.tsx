@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 flex items-center justify-between p-4 bg-white border-b border-gray-200 shadow-sm">
+      <header className="sticky top-0 z-50 flex items-center justify-between p-4 bg-white border-b border-gray-200 shadow-sm">
         <button className="md:hidden" onClick={() => setOpen(true)}>
           <MenuIcon />
         </button>

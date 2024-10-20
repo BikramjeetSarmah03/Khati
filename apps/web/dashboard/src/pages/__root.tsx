@@ -18,7 +18,7 @@ function RootComponent() {
       <div className="flex flex-col min-h-screen bg-white text-foreground">
         <Header />
 
-        <main className="grow">
+        <main className="h-full grow">
           <Outlet />
         </main>
 

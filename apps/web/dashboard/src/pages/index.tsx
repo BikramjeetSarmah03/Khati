@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="p-2">
+    <div className="h-full p-2">
       <HeroSection />
     </div>
   );
