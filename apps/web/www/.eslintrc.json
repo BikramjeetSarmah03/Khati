@@ -1,7 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "../../../eslint.config.mjs"
-  ]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "no-unused-vars": "error"
+  }
 }

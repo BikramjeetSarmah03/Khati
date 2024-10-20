@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "dist/server.ts",
-    "lint": "eslint ."
+    "start": "dist/server.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.2",
@@ -18,7 +17,6 @@
   "devDependencies": {
     "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^8.10.0",
-    "eslint": "^9.13.0",
     "tsc-alias": "^1.8.10",
     "tsx": "^4.7.1"
   }
