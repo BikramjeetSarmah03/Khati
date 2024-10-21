@@ -1,3 +1,5 @@
+"use client";
+
 import { HeroSwiper } from "./hero-swiper";
 
 export const HeroSection = () => {
