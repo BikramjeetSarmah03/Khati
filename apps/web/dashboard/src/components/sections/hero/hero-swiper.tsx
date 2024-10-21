@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { type CarouselApi } from "@/components/ui/carousel";
 
-export const ProductsSwiper = () => {
+export const HeroSwiper = () => {
   const [api, setApi] = useState<CarouselApi>();
 
   return (
