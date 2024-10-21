@@ -21,6 +21,15 @@ function Index() {
           <FeaturedSwiper />
         </div>
       </section>
+
+      <section className="mx-4 md:mx-8 lg:mx-auto max-w-7xl">
+        <div className="space-y-8">
+          <h1 className="flex flex-col items-center gap-4 text-4xl font-bold">
+            <span>Purchase Online on Hurst</span>
+            <hr className="w-20 h-0.5 bg-primary" />
+          </h1>
+        </div>
+      </section>
     </div>
   );
 }
