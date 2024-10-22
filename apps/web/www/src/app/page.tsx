@@ -1,5 +1,8 @@
+import { ProductCard } from "@/components/product/product-card";
 import { FeaturedSwiper } from "@/components/sections/featured/featured-swiper";
 import { HeroSection } from "@/components/sections/hero/hero-section";
+
+import products from "@/demo/products.json";
 
 export default function Home() {
   return (
@@ -22,6 +25,12 @@ export default function Home() {
             <span>Purchase Online on Hurst</span>
             <hr className="w-20 h-0.5 bg-primary" />
           </h1>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            {products.slice(0, 4).map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
+          </div>
         </div>
       </section>
     </div>

@@ -3,13 +3,16 @@
 import { useState } from "react";
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselApi,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+
+import { ProductCard } from "@/components/product/product-card";
+
+import products from "@/demo/products.json";
 
 export const FeaturedSwiper = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -35,18 +38,12 @@ export const FeaturedSwiper = () => {
         setApi={setApi}
       >
         <CarouselContent className="h-full -ml-1" wrapperClassName="h-full">
-          {Array.from({ length: 5 }).map((_, index) => (
+          {products.map((product, index) => (
             <CarouselItem
               key={index}
               className="h-full pl-1 md:basis-[50%] lg:basis-[33%] xl:basis-[25%]"
             >
-              <div className="h-full p-1">
-                <Card className="h-full">
-                  <CardContent className="flex items-center justify-center h-full p-6">
-                    <span className="text-2xl font-semibold">{index + 1}</span>
-                  </CardContent>
-                </Card>
-              </div>
+              <ProductCard product={product} />
             </CarouselItem>
           ))}
         </CarouselContent>
